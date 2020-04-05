@@ -194,7 +194,7 @@ nav a {
 
 /************* Suggestions *************/
 .suggestions input,
-.tendencies input {
+.trends input {
     background-color: #FFFAFE;
     border: 1px solid #E6BBE2;
     box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
@@ -208,22 +208,22 @@ nav a {
 
 /*----- Placeholder style-----*/
 .suggestions input::-webkit-input-placeholder,
-.tendencies input::-webkit-input-placeholder {
+.trends input::-webkit-input-placeholder {
     color: #110038;
 }
 
 .suggestions input:-moz-placeholder,
-.tendencies input:-moz-placeholder {
+.trends input:-moz-placeholder {
     color: #110038;
 }
 
 .suggestions input::-moz-placeholder,
-.tendencies input::-moz-placeholder {
+.trends input::-moz-placeholder {
     color: #110038;
 }
 
 .suggestions input:-ms-input-placeholder,
-.tendencies input:-ms-input-placeholder {
+.trends input:-ms-input-placeholder {
     color: #110038;
 }
 
@@ -297,22 +297,36 @@ nav a {
     border: none;
 }
 
-/************* Tendencies *************/
-.tendencies .container {
+/************* trends *************/
+.trends .container {
     padding-top: 64px;
 }
 
-.tendencies input {
+.trends input {
     margin-bottom: 20px;
 }
 
-.tendencies .bar {
+.trends .bar {
     position: absolute;
     left: 4px;
     right: 4px;
     bottom: 4px;
+    display: none;
 }
 
-.tendencies .gif-container:not(:first-child) {
+.trends .gif-container {
     margin-bottom: 16px;
+    width: 288px;
+    height: 313px;
+    position: relative;
+}
+
+.trends .gif-container:hover {
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    padding: 3px 4px 4px;
+}
+
+.trends .gif-container:hover .bar{
+    display: block;
 }

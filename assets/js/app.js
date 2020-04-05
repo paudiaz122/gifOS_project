@@ -68,6 +68,19 @@ function hashtagCreator(stringToConvert) {
     return '#' + finalString + stringToConvert;
 }
 
+function hashtagCreatorForTrends(stringToConvert) {
+    let finalString = '';
+    let index = stringToConvert.indexOf(' ');
+    
+    while(index != -1) {
+
+        finalString = finalString + stringToConvert.slice(0, index) + ' #';
+        stringToConvert = stringToConvert.slice(index + 1);
+        index = stringToConvert.indexOf(' ');
+    }
+    return '#' + finalString + stringToConvert;
+}
+
 async function getRandomGif() {
     const consultRandom = await fetch('https://api.giphy.com/v1/gifs/random?api_key=' + APIKEY + '&tag=&rating=G')
         .then(response => {
@@ -90,7 +103,10 @@ async function loadRandomGif() {
     }
 }
 
-const trendDivNode = document.querySelector('.tendencies .gif-grid');
+
+//trends GIFS
+
+const trendDivNode = document.querySelector('.trends .gif-grid');
 
 async function getTrendGifs() {
     const consultTrend = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=' + APIKEY + '&limit=' + LIMITGIFS + '&rating=G')
@@ -111,16 +127,24 @@ function loadTrendGifs(gifs) {
 //Cargo gif por gif del arreglo de LIMITGIFS
 function loadGif(gif) {
     const gifURL = gif.images.fixed_height.url; //VER SI NO USO OTRA
+    const gifHashtag = gif.title;
 
     const div = document.createElement('div');
     const img = document.createElement('img');
+    const divBar = document.createElement('div');
+    const p = document.createElement('p');
+
     div.classList.add('gif-container');
+    divBar.classList.add('bar');
     img.setAttribute('src', gifURL);
+    p.innerHTML = hashtagCreatorForTrends(gifHashtag);
+
     div.append(img);
+    divBar.append(p);
+    div.append(divBar);
 
     trendDivNode.append(div);
 }
-
 
 loadRandomGif();
 getTrendGifs().then(response => loadTrendGifs(response));
