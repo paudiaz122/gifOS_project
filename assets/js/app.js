@@ -3,6 +3,14 @@ const SAILORNIGHT = 'dark';
 const APIKEY = 'Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k';
 const LIMITGIFS = 25;
 
+/*LOAD THEME*/
+function loadTheme() {
+    const theme = sessionStorage.getItem('theme') || SAILORDAY;
+    const body = document.getElementsByTagName('body')[0];
+    body.setAttribute('theme', theme);
+}
+
+
 /*OPEN THEME BUTTON*/
 
 var buttonOpen = false;
@@ -22,18 +30,15 @@ function changeCSS(theme, event) {
     //NO DEBERIA RECARGAR LA PAGINA!!
     if (theme === 'sailorNight') {
         body.setAttribute('theme', SAILORNIGHT);
-        // document.getElementById('styleSheet').href = SAILORNIGHT;
-        //document.getElementById('styleSheet').setAttribute('href', SAILORNIGHT);
+        sessionStorage.setItem('theme', SAILORNIGHT);
     }
     else {
-        //document.getElementById('styleSheet').setAttribute('href', SAILORDAY);
         body.setAttribute('theme', SAILORDAY);
-        // document.getElementById('styleSheet').href = SAILORDAY;
+        sessionStorage.setItem('theme', SAILORDAY);
     }
 }
 
 /*USING GIPHY API*/
-
 //SEARCH BUTTON
 
 document.getElementById('search').addEventListener('click', () => {
@@ -146,6 +151,7 @@ function loadGif(gif) {
     trendDivNode.append(div);
 }
 
+loadTheme();
 loadRandomGif();
 getTrendGifs().then(response => loadTrendGifs(response));
 
