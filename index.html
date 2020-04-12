@@ -15,13 +15,18 @@
 </head>
 <body theme="light">
     <header>
-        <p>¡Bienvenidos/as a Guifos.com! ------Donde los gifs están.////// Número de visitas VARIABLE_CONTADOR</p>
+        <p>¡Bienvenidos/as a Guifos.com! ------Donde los gifs están.////// Número de visitas 12.765.803</p> <!-- TODO -->
     </header>
     <nav>
         <div class="container">
-            <div class="logo"></div>
+            <a href="./index.html">
+                <div class="logo"></div>
+            </a>
             <div class="nav-button">
-                <button id="create-gifos" class="guifos">Crear Guifos</button>
+                <!-- <button id="create-gifos" class="guifos">Crear Guifos</button> -->
+                <div class="createGuifosButton guifos">
+                    <a href="./mis-guifos.html">Crear Guifos</a> <!-- TODO hacer que se ejecute la funcion createGuifos() -->
+                </div>
                 <button class="theme" onclick="toggleButton();">
                     <div class="button-container">
                         <span class="button-text">Elegir Tema</span>
@@ -33,7 +38,7 @@
                         <li id="sailor-night" onclick="changeCSS('sailorNight', event);"><a href="#"><u>S</u>ailor Night</a></li>
                     </ul>
                 </button>
-                <a class="my-guifos" href=""><u>M</u>is Guifos</a>
+                <a class="my-guifos" href="./mis-guifos.html"><u>M</u>is Guifos</a>
             </div>
         </div>
     </nav>
@@ -108,5 +113,6 @@
     </section>
 
     <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/index.js"></script>
 </body>
 </html>
