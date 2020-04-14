@@ -104,7 +104,7 @@ nav .container {
     width: 420px;
 }
 
-button, .createGuifosButton {
+button, .guifos {
     border: 1px solid #110038;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 16px;
@@ -360,8 +360,6 @@ nav a {
     margin: 0 auto;
     width: 684px;
     height: 386px;
-    background: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     padding: 3px 4px 4px;
 }
 

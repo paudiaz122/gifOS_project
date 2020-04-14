@@ -11,18 +11,42 @@ body[theme='dark'] {
     background-image: url(../img/gifof_logo_dark.png);
 }
 
-[theme='dark'] button {
+[theme='dark'] .bar {
+    background-image: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
+}
+
+[theme='dark'] .window-container {
+    background: #B4B4B4;
+    box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
+}
+
+[theme='dark'] button,
+[theme='dark'] .guifos {
     background-color: #EE3EFE;
     box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
 }
 
-[theme='dark'] nav button:hover, [theme='dark'] nav button:active {
+[theme='dark'] button.cancelar {
+    background: #CCCCCC;
+    border: 1px solid #808080;
+    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+}
+
+[theme='dark'] .search-button {
+    background: #B4B4B4;
+    border: 1px solid #808080;
+    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+}
+
+[theme='dark'] nav button:hover,
+[theme='dark'] nav button:active {
     background: #CE36DB;
     border: 1px solid #110038;
     box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
 }
 
-[theme='dark'] .theme span.button-text, [theme='dark'] .icon {
+[theme='dark'] .theme span.button-text,
+[theme='dark'] .icon {
     box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
 }
 
@@ -37,9 +61,15 @@ body[theme='dark'] {
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
 }
 
-[theme='dark'] .my-guifos, [theme='dark'] .guifos, [theme='dark'] .button-text {
+[theme='dark'] .my-guifos,
+[theme='dark'] .guifos,
+[theme='dark'] .guifos a,
+[theme='dark'] .button-text {
     color: #FFFFFF;
 }
+
+/*TODO color de la lupa*/
+
 /* 
 .my-guifos u{
     text-decoration: none;
