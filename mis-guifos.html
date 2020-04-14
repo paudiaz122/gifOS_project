@@ -17,10 +17,11 @@
     </header>
     <nav>
         <div class="container">
+            <a class="goback hidden" href="./index.html"><img src="./assets/img/arrow.svg" alt="Go back"></a>
             <a href="./index.html">
                 <div class="logo"></div>
             </a>
-            <div class="nav-button show">
+            <div class="nav-button">
                 <button id="create-gifos" class="guifos" onclick="createGuifos();">Crear Guifos</button>
                 <button class="theme" onclick="toggleButton();">
                     <div class="button-container">
@@ -33,13 +34,32 @@
                         <li id="sailor-night" onclick="changeCSS('sailorNight', event);"><a href="#"><u>S</u>ailor Night</a></li>
                     </ul>
                 </button>
-                <a class="my-guifos" href=""><u>M</u>is Guifos</a>
+                <a class="my-guifos" href="./mis-guifos.html"><u>M</u>is Guifos</a>
             </div>
         </div>
     </nav>
     <section class="create-guifos hidden">
         <div class="window-container">
-
+            <div class="bar">
+                <p>Crear Guifos</p>
+            </div>
+            <img src="./assets/img/window_img.png" alt="Window image">
+            <div class="text-container">
+                <h2>Aquí podrás crear tus propios guifos</h2><br>
+                <p>
+                    Crear tu <b><i>guifo</i></b> muy fácil, graba cualquier imagen con tu cámara y obtén guidos personalizados.
+                    Los pasos para crear tu guifo son:
+                    <br><b>1)</b> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
+                    <br><b>2)</b> Capturar tu momento guifo
+                    <br><b>3)</b> Revisar el momento
+                    <br><b>4)</b> Listo para subir y compartir!
+                    <br>¿Quieres comenzar a crear tu <b><i>guifo</i></b> ahora?
+                </p>
+            </div>
+            <div class="create-button-container">
+                <button class="cancelar">Cancelar</button>
+                <button class="comenzar">Comenzar</button>
+            </div>
         </div>
     </section>
     <section class="mis-guifos">

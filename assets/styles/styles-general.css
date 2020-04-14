@@ -44,33 +44,39 @@ header {
     white-space: nowrap;
 }
 
-.hidden {
-    display: none;
-}
-
 /*----- Placeholder style-----*/
 .suggestions input::-webkit-input-placeholder,
-.trends input::-webkit-input-placeholder {
+.trends input::-webkit-input-placeholder,
+.mis-guifos input::-webkit-input-placeholder {
     color: #110038;
 }
 
 .suggestions input:-moz-placeholder,
-.trends input:-moz-placeholder {
+.trends input:-moz-placeholder,
+.mis-guifos input:-moz-placeholder {
     color: #110038;
 }
 
 .suggestions input::-moz-placeholder,
-.trends input::-moz-placeholder {
+.trends input::-moz-placeholder,
+.mis-guifos input::-moz-placeholder {
     color: #110038;
 }
 
 .suggestions input:-ms-input-placeholder,
-.trends input:-ms-input-placeholder {
+.trends input:-ms-input-placeholder,
+.mis-guifos input:-ms-input-placeholder {
     color: #110038;
 }
 /*----------*/
 
 /************* Buttons Menu *************/
+.goback {
+    position: absolute;
+    top: 55px;
+    left: -31px;
+}
+
 .logo {
     width: 102.6px;
     height: 64px;
@@ -88,6 +94,7 @@ nav .container {
     justify-items: center;
     padding-top: 35px;
     padding-bottom: 19px;
+    position: relative;
 }
 
 .nav-button {
@@ -196,7 +203,7 @@ nav a {
 }
 
 .search-box input {
-    width: calc(100% - 143px);
+    width: calc(100% - 110px);
     height: 48px;
     font-size: 16px;
     color: #110038;
@@ -341,13 +348,56 @@ nav a {
 
 /************* Create Guifos *************/
 
+.hidden {
+    display: none;
+}
+
 .create-guifos {
     padding: 56px 0 153px;
 }
+
 .window-container {
     margin: 0 auto;
     width: 684px;
     height: 386px;
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    padding: 3px 4px 4px;
+}
+
+.window-container img {
+    position: relative;
+    top: 30px;
+    left: 35px;
+}
+
+.text-container {
+    font-size: 14px;
+    color: #110038;
+    letter-spacing: 0;
+    line-height: 20px;
+    width: 518px;
+    margin-left: 73px;
+    padding-left: 16px;
+    /*TODO espaciar los parrafos*/
+}
+
+.text-container h2 {
+    font-size: 16px;
+    color: #110038;
+    letter-spacing: 0;
+    line-height: 22px;
+    font-weight: bold;
+}
+
+.create-button-container {
+    display: flex;
+    width: 304px;
+    justify-content: space-between;
+    margin: 28px 36px 0 344px;
+}
+
+.create-button-container button {
+    width: 144px;
+    height: 36px;
 }
