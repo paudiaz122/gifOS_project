@@ -1,10 +1,12 @@
 const APIKEY = 'Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k';
 const LIMITGIFS = 25;
+const lupaActive = './assets/img/lupa.svg';
+const lupaInactive = './assets/img/lupa_inactive.svg';
 
 /*USING GIPHY API*/
-//SEARCH BUTTON
-
-document.getElementById('search').addEventListener('click', () => {
+//SEARCH
+const searchButtonElement = document.getElementById('search');
+searchButtonElement.addEventListener('click', () => {
     const search = document.querySelector('.search-box input').nodeValue;
     getSearchResults(search);
 });
@@ -23,8 +25,23 @@ async function getSearchResults(search) {
     return found;
 }
 
-//GIF SUGGESTIONS
+//SEARCH SUGGESTIONS
+const inputElement = document.querySelector('.search-container input');
+const lupaElement = document.querySelector('.search-button img');
 
+function addButtonClass() {
+    if(inputElement.value !== ''){
+        searchButtonElement.classList.add('ready');
+        lupaElement.setAttribute('src', lupaActive);
+    } else {
+        searchButtonElement.classList.remove('ready');
+        lupaElement.setAttribute('src', lupaInactive);
+    }
+}
+        
+
+
+//GIF SUGGESTIONS
 function hashtagCreator(stringToConvert) {
     let finalString = '';
     let index = stringToConvert.indexOf(' ');

@@ -16,7 +16,7 @@ body[theme='light'] {
 }
 
 [theme='light'] button,
-[theme='light'] .createGuifosButton {
+[theme='light'] .guifos {
     background-color: #F7C9F3;
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }

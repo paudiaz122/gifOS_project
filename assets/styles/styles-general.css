@@ -117,6 +117,7 @@ button, .guifos {
 
 .guifos {
     padding: 9px 26.5px;
+    height: 38px;
 }
 
 nav ul {
@@ -224,9 +225,16 @@ nav a {
     align-items: center;
     padding: 0 14px 0 10px;
     font-size: 16px;
-    color: #B4B4B4; /*TODO NO CAMBIA EL COLOR!!*/
+    color: #B4B4B4;
     letter-spacing: 0;
     line-height: 18px;
+}
+
+.search-button.ready {
+    background: #F7C9F3;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    color: black;
 }
 
 /************* Suggestions *************/
@@ -356,14 +364,14 @@ nav a {
     padding: 56px 0 153px;
 }
 
-.window-container {
+.window-container.confirm {
     margin: 0 auto;
     width: 684px;
     height: 386px;
     padding: 3px 4px 4px;
 }
 
-.window-container img {
+.window-container.confirm img {
     position: relative;
     top: 30px;
     left: 35px;
@@ -388,6 +396,10 @@ nav a {
     font-weight: bold;
 }
 
+.text-container br {
+    line-height: 15px;
+}
+
 .create-button-container {
     display: flex;
     width: 304px;
@@ -399,3 +411,22 @@ nav a {
     width: 144px;
     height: 36px;
 }
+
+.window-container.check {
+    margin: 0 auto;
+    width: 860px;
+    height: 548px;
+    padding: 3px 4px 4px;
+    position: relative;
+}
+
+.img-border {
+    width: 838px;
+    height: 440px;
+    margin: 8px auto 0;
+    padding: 3px;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+}
+
