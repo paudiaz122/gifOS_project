@@ -3,6 +3,13 @@ const LIMITGIFS = 25;
 const lupaActive = './assets/img/lupa.svg';
 const lupaInactive = './assets/img/lupa_inactive.svg';
 
+//CREATE GUIFOS
+function goToCreateGuifos(event, element) {
+    event.preventDefault();
+    sessionStorage.setItem('createGif', true);
+    window.location.href = element.href;
+}
+
 /*USING GIPHY API*/
 //SEARCH
 const searchButtonElement = document.getElementById('search');
@@ -12,12 +19,10 @@ searchButtonElement.addEventListener('click', () => {
 });
 
 async function getSearchResults(search) {
+    search = search.trim();
     const found = await fetch('http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=' + APIKEY)
         .then(response => {
             return response.json();
-        })
-        .then(data => {
-            return data;
         })
         .catch(error => {
             return error;
@@ -38,8 +43,6 @@ function addButtonClass() {
         lupaElement.setAttribute('src', lupaInactive);
     }
 }
-        
-
 
 //GIF SUGGESTIONS
 function hashtagCreator(stringToConvert) {
@@ -110,7 +113,7 @@ function loadTrendGifs(gifs) {
 
 //Cargo gif por gif del arreglo de LIMITGIFS
 function loadGif(gif) {
-    const gifURL = gif.images.fixed_height.url; //TODO usar downsized
+    const gifURL = gif.images.downsized.url;
     const gifHashtag = gif.title;
 
     const div = document.createElement('div');

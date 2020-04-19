@@ -19,7 +19,7 @@ a {
 }
 
 input {
-    font-family: 'Chakra Petch', sans-serif;
+    outline: none;
 }
 
 header {
@@ -115,8 +115,14 @@ button, .guifos {
     outline: none;
 }
 
+.nav-button .guifos {
+    width: 144px;
+}
+
 .guifos {
-    padding: 9px 26.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 38px;
 }
 
@@ -306,7 +312,6 @@ nav a {
     text-align: center;
     line-height: 18px;
     padding: 8px 10px;
-    /* margin: 233px auto 19px 11px; */
     position: absolute;
     top: 231px;
     left: 7px;
@@ -340,7 +345,7 @@ nav a {
 .trends .gif-container {
     margin-bottom: 16px;
     width: 288px;
-    height: 313px;
+    height: 298px;
     position: relative;
 }
 
@@ -420,6 +425,11 @@ nav a {
     position: relative;
 }
 
+.window-container .items {
+    line-height: 28px;
+    margin-top: 10px;
+}
+
 .img-border {
     width: 838px;
     height: 440px;
@@ -430,3 +440,23 @@ nav a {
     box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
 
+.capturar {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    height: 38px;
+}
+
+.capturar span {
+    padding-top: 8px; /* TODO deberia ser 9 pero queda descentrado */
+    padding-bottom: 9px;
+}
+
+.capturar img {
+    width: 18px;
+}
+
+.capturar .button-text {
+    width: 144px;
+    border-left: 1px solid #110038;
+}

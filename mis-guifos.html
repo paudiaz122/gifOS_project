@@ -45,11 +45,12 @@
             </div>
             <img src="./assets/img/window_img.png" alt="Window image">
             <div class="text-container">
-                <h2>Aquí podrás crear tus propios guifos</h2>
-                <p>
-                    Crear tu <b><i>guifo</i></b> muy fácil, graba cualquier imagen con tu cámara y obtén guidos personalizados.
+                <h2>Aquí podrás crear tus propios guifos</h2><br>
+                <p>Crear tu <b><i>guifo</i></b> muy fácil, graba cualquier imagen con tu cámara y obtén guidos personalizados.
                     Los pasos para crear tu guifo son:
-                    <br><b>1)</b> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
+                </p>
+                <p class="items">
+                    <b>1)</b> Dar permisos de acceso a la cámara (sólo por el tiempo de uso)
                     <br><b>2)</b> Capturar tu momento guifo
                     <br><b>3)</b> Revisar el momento
                     <br><b>4)</b> Listo para subir y compartir!
@@ -58,10 +59,10 @@
             </div>
             <div class="create-button-container">
                 <button class="cancelar">Cancelar</button>
-                <button class="comenzar">Comenzar</button>
+                <button class="comenzar" onclick="startCheck();">Comenzar</button>
             </div>
         </div>
-        <div class="window-container check">
+        <div class="window-container check hidden">
             <div class="bar">
                 <p>Un Chequeo Antes de Empezar</p>
             </div>
@@ -70,7 +71,7 @@
             </div>
             <button class="capturar">
                 <div class="button-container">
-                    <span class="icon"><img src="." alt=""></span>
+                    <span class="icon"><img src="./assets/img/camera.svg" alt="Camera"></span>
                     <span class="button-text">Capturar</span>
                 </div>
             </button>

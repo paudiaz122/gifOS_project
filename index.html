@@ -23,11 +23,10 @@
                 <div class="logo"></div>
             </a>
             <div class="nav-button">
-                <!-- <button id="create-gifos" class="guifos">Crear Guifos</button> -->
                 <div class="guifos">
-                    <a href="./mis-guifos.html">Crear Guifos</a> <!-- TODO hacer que se ejecute la funcion createGuifos() -->
+                    <a href="./mis-guifos.html" onclick="goToCreateGuifos(event, this);">Crear Guifos</a> <!-- TODO hacer que se ejecute la funcion createGuifos() -->
                 </div>
-                <button class="theme" onclick="toggleButton();">
+                <button class="theme" onclick="toggleButton();"> <!-- TODO que se cierre cuando apretas afuera -->
                     <div class="button-container">
                         <span class="button-text">Elegir Tema</span>
                         <span class="icon"><img src="./assets/img/dropdown.svg" alt="Dropdown arrow"></span>
