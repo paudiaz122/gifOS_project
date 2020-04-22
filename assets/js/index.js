@@ -13,13 +13,20 @@ function goToCreateGuifos(event, element) {
 /*USING GIPHY API*/
 //SEARCH
 const searchButtonElement = document.getElementById('search');
-searchButtonElement.addEventListener('click', () => {
+const trendsInput = document.querySelector('.trends input');
+const lupaElement = document.querySelector('.search-button img');
+const suggestionContainer = document.getElementsByClassName('search-suggestions')[0];
+const searchInput = document.querySelector('.search-box input');
+const lastSection = document.querySelector('section.trends');
+const trendDivNode = document.querySelector('.trends .gif-grid');
+
+function prepareSearch() {
     const search = document.querySelector('.search-box input').nodeValue;
-    getSearchResults(search);
-});
+    //getSearchResults(search.trim());
+    getSearchResults(search.trim()).then(response => loadSearchPage(response));
+}
 
 async function getSearchResults(search) {
-    search = search.trim();
     const found = await fetch('http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=' + APIKEY)
         .then(response => {
             return response.json();
@@ -30,12 +37,48 @@ async function getSearchResults(search) {
     return found;
 }
 
-//SEARCH SUGGESTIONS
-const inputElement = document.querySelector('.search-container input');
-const lupaElement = document.querySelector('.search-button img');
+function loadSearchPage(searchGifs) {
+    trendsInput.innerHTML = searchInput + ' (resultados)';
+    gifs.data.forEach(gifs => loadSearchGif(gif));
+}
 
-function addButtonClass() {
-    if(inputElement.value !== ''){
+function loadSearchGif(gif) {
+    const gifURL = gif.images.downsized.url;
+
+    const div = document.createElement('div');
+    const img = document.createElement('img');
+
+    div.classList.add('gif-container');
+    img.setAttribute('src', gifURL);
+
+    div.append(img);
+
+    trendDivNode.append(div);
+}
+
+//SEARCH SUGGESTIONS
+let randomSuggestionsArray = ['Love', 'Cats', 'Animals', 'Dogs', 'Sports', 'Famous', 'Funny', 'Reaction', 'Mood', 'Saturday'];
+let searchInputValue = '';
+let showSuggestions = false;
+
+function randomSuggestion() {
+    let randomNumber = Math.round(Math.random() * 9);
+    return randomSuggestionsArray[randomNumber];
+}
+
+function onSearchInputChange(event) {
+    searchInputValue = searchInput.value.trim();
+    showSuggestions = searchInputValue.length >= 3;
+    if (event.keyCode === 13) { // Mandás la busqueda cuando se aprieta enter
+        localStorage.setItem('search', searchInputValue);
+        prepareSearch();
+    }
+    toggleSearchButtonStatus();
+    toggleSuggestions();
+}
+
+function toggleSearchButtonStatus() { 
+    if (searchInputValue) {
         searchButtonElement.classList.add('ready');
         lupaElement.setAttribute('src', lupaActive);
     } else {
@@ -44,7 +87,66 @@ function addButtonClass() {
     }
 }
 
-//GIF SUGGESTIONS
+function toggleSuggestions() {
+    suggestionContainer.innerHTML = ''
+    if (showSuggestions) {
+        suggestionContainer.classList.remove('hidden');
+        for(let i=0; i<3; i++) {
+            const div = document.createElement('div');
+            const p = document.createElement('p');
+            p.innerText = randomSuggestion();
+            div.classList.add('suggestion-result');
+            div.append(p);
+            suggestionContainer.append(div);
+        }
+    } else {
+        suggestionContainer.classList.add('hidden');
+    }
+}
+
+function prepareSearch() {
+    getSearchResults(searchInputValue); 
+}
+
+//---------------------------------------------------
+
+
+// function showSuggestions() {
+//     suggestionContainer.innerHTML = '';
+//     for(let i=0; i<3; i++) {
+//         const div = document.createElement('div');
+//         const p = document.createElement('p');
+//         p.innerText = randomSuggestion();
+
+//         div.classList.add('suggestion-result');
+//         div.append(p);
+//         suggestionContainer.append(div);
+//     }
+// }
+
+// let flag = true;
+// function addButtonClass() {
+//     if(inputElement.value !== ''){
+//         searchButtonElement.classList.add('ready');
+//         lupaElement.setAttribute('src', lupaActive);
+
+//         if(inputElement.value.length >= 3) {
+//             suggestionContainer.classList.remove('hidden');
+//             if(flag === true) {
+//                 showSuggestions();
+//                 flag = false;
+//             }
+//         } else {
+//             suggestionContainer.classList.add('hidden');
+//             flag = true;
+//         }
+//     } else {
+//         searchButtonElement.classList.remove('ready');
+//         lupaElement.setAttribute('src', lupaInactive);
+//     }
+// }
+
+//HASHTAG CREATOR FUNCTIONS
 function hashtagCreator(stringToConvert) {
     let finalString = '';
     let index = stringToConvert.indexOf(' ');
@@ -69,6 +171,7 @@ function hashtagCreatorForTrends(stringToConvert) {
     return '#' + finalString + stringToConvert;
 }
 
+//GIF SUGGESTIONS (Random GIFs)
 async function getRandomGif() {
     const consultRandom = await fetch('https://api.giphy.com/v1/gifs/random?api_key=' + APIKEY + '&tag=&rating=G')
         .then(response => {
@@ -91,10 +194,7 @@ async function loadRandomGif() {
     }
 }
 
-//trends GIFS
-
-const trendDivNode = document.querySelector('.trends .gif-grid');
-
+//TREND GIFs
 async function getTrendGifs() {
     const consultTrend = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=' + APIKEY + '&limit=' + LIMITGIFS + '&rating=G')
         .then(response => {

@@ -194,6 +194,7 @@ nav a {
     background-color: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     height: 100px;
+    width: 1200px;
     padding-top: 3px;
 }
 
@@ -207,6 +208,10 @@ nav a {
     justify-content: space-between;
     align-items: center;
     margin: 12px 18px 12px 15px;
+}
+
+.search-box .container {
+    position: relative;
 }
 
 .search-box input {
@@ -241,6 +246,34 @@ nav a {
     border: 1px solid #110038;
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
     color: black;
+}
+
+.search-suggestions.box {
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 15px;
+    padding-top: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.suggestion-result {
+    width: 1057px;
+    height: 36px;
+    border: 1px solid #808080;
+    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+
+.suggestion-result p {
+    font-size: 16px;
+    color: #110038;
+    letter-spacing: 0;
+    line-height: 22px;
 }
 
 /************* Suggestions *************/
@@ -362,7 +395,7 @@ nav a {
 /************* Create Guifos *************/
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .create-guifos {
