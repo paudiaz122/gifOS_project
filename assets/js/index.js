@@ -11,23 +11,27 @@ function goToCreateGuifos(event, element) {
 }
 
 /*USING GIPHY API*/
-//SEARCH
+
 const searchButtonElement = document.getElementById('search');
 const trendsInput = document.querySelector('.trends input');
 const lupaElement = document.querySelector('.search-button img');
 const suggestionContainer = document.getElementsByClassName('search-suggestions')[0];
 const searchInput = document.querySelector('.search-box input');
-const lastSection = document.querySelector('section.trends');
+const suggestionsSection = document.querySelector('section.suggestions');
 const trendDivNode = document.querySelector('.trends .gif-grid');
+const gifGrid = document.getElementsByClassName('gif-grid')[0];
 
+//SEARCH
 function prepareSearch() {
-    const search = document.querySelector('.search-box input').nodeValue;
-    //getSearchResults(search.trim());
-    getSearchResults(search.trim()).then(response => loadSearchPage(response));
+    localStorage.setItem('search', searchInputValue);
+    suggestionContainer.classList.add('hidden');
+    suggestionsSection.classList.add('hidden');
+    searchInputValue = searchInput.value.trim();
+    getSearchResults(searchInputValue).then(response => loadSearchPage(response));
 }
 
 async function getSearchResults(search) {
-    const found = await fetch('http://api.giphy.com/v1/gifs/search?q=' + search + '&api_key=' + APIKEY)
+    const found = await fetch('https://api.giphy.com/v1/gifs/search?api_key=' + APIKEY + '&q=' + search + '&limit=' + LIMITGIFS + '&offset=0&rating=G&lang=en')
         .then(response => {
             return response.json();
         })
@@ -38,8 +42,9 @@ async function getSearchResults(search) {
 }
 
 function loadSearchPage(searchGifs) {
-    trendsInput.innerHTML = searchInput + ' (resultados)';
-    gifs.data.forEach(gifs => loadSearchGif(gif));
+    trendsInput.placeholder = searchInputValue + ' (resultados)';
+    gifGrid.innerHTML = '';
+    searchGifs.data.forEach(gif => loadSearchGif(gif));
 }
 
 function loadSearchGif(gif) {
@@ -70,7 +75,6 @@ function onSearchInputChange(event) {
     searchInputValue = searchInput.value.trim();
     showSuggestions = searchInputValue.length >= 3;
     if (event.keyCode === 13) { // Mandás la busqueda cuando se aprieta enter
-        localStorage.setItem('search', searchInputValue);
         prepareSearch();
     }
     toggleSearchButtonStatus();
@@ -104,9 +108,9 @@ function toggleSuggestions() {
     }
 }
 
-function prepareSearch() {
-    getSearchResults(searchInputValue); 
-}
+// function prepareSearch() {
+//     getSearchResults(searchInputValue); 
+// }
 
 //---------------------------------------------------
 
