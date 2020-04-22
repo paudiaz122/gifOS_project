@@ -1,6 +1,7 @@
 /*CREATE GIFOS*/
 
-const createGuifosWindow = document.getElementsByClassName("create-guifos")[0];
+const createGuifosWindow = document.querySelector(".window-container.start");
+const createGuifosSection = document.getElementsByClassName("create-guifos")[0];
 const checkWindow = document.querySelector('.window-container.check');
 
 function checkOrigin() {
@@ -17,7 +18,7 @@ function createGuifos() {
 
     //muestro u oculto los elementos
     navButton.classList.add("hidden");
-    createGuifosWindow.classList.remove("hidden");
+    createGuifosSection.classList.remove("hidden");
     goBakcArrow.classList.remove("hidden");
 }
 
