@@ -15,15 +15,23 @@ body[theme='dark'] {
     background-image: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
 }
 
-[theme='dark'] .window-container {
-    background: #B4B4B4;
-    box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
+[theme='dark'] .suggestion-result {
+    background: #CCCCCC;
 }
+
+/* [theme='dark'] .suggestion-result:hover {
+TODO agregar borde
+} */
 
 [theme='dark'] button,
 [theme='dark'] .guifos {
-    background-color: #EE3EFE;
+    background: #EE3EFE;
     box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
+}
+
+[theme='dark'] .window-container {
+    background: #B4B4B4;
+    box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
 }
 
 [theme='dark'] button.cancelar {
@@ -32,16 +40,26 @@ body[theme='dark'] {
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
 }
 
+/* [theme='dark'] .search-button img {
+    background-image: url(../img/combined_shape.svg);
+} */
+
 [theme='dark'] .search-button {
     background: #B4B4B4;
-    border: 1px solid #808080;
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+    color: #8F8F8F;
+}
+
+[theme='dark'] .search-button.ready {
+    background: #EE3EFE;
+    box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
 }
 
 [theme='dark'] nav button:hover,
-[theme='dark'] nav button:active {
+[theme='dark'] nav button:active,
+[theme='dark'] .nav-button .guifos:hover,
+[theme='dark'] .nav-button .guifos:active {
     background: #CE36DB;
-    border: 1px solid #110038;
     box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
 }
 
@@ -61,6 +79,11 @@ body[theme='dark'] {
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
 }
 
+[theme='dark'] .box {
+    background: #B4B4B4;
+    box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
+}
+
 [theme='dark'] .my-guifos,
 [theme='dark'] .guifos,
 [theme='dark'] .guifos a,
@@ -68,9 +91,24 @@ body[theme='dark'] {
     color: #FFFFFF;
 }
 
-/*TODO color de la lupa*/
+[theme='dark'] .see-more {
+    background: #2E32FB;
+    box-shadow: inset -2px -2px 0 0 #2124B3, inset 2px 2px 0 0 #FFFFFF;
+}
 
-/* 
-.my-guifos u{
-    text-decoration: none;
-} */
+[theme='dark'] .see-more:hover {
+    background: #2629CC;
+    box-shadow: inset -2px -2px 0 0 #2124B3, inset 2px 2px 0 0 #FFFFFF;
+}
+
+[theme='dark'] .suggestions .gif-box {
+    background: #B4B4B4;
+    box-shadow: inset -2px -2px 0 0 #5C5C5C, inset 2px 2px 0 0 #FFFFFF;
+}
+
+[theme='dark'] .trends .gif-container:hover {
+    background: #B4B4B4;
+    box-shadow: inset -2px -2px 0 0 #5C5C5C, inset 2px 2px 0 0 #FFFFFF;
+}
+
+/*TODO color de la lupa*/

@@ -97,6 +97,20 @@ nav .container {
     position: relative;
 }
 
+/* nav button {
+    position: relative;
+} */
+
+/* button::before:hover {
+    position: absolute;
+    border: 1px dotted #110038;
+    content: "";
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+} */
+
 .nav-button {
     display: flex;
     justify-content: space-between;
@@ -116,6 +130,7 @@ button, .guifos {
 }
 
 .nav-button .guifos {
+    border: 1px solid #110038;
     width: 144px;
 }
 
@@ -191,8 +206,6 @@ nav a {
 
 /************* Search Box *************/
 .box {
-    background-color: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     height: 100px;
     width: 1200px;
     padding-top: 3px;
@@ -236,15 +249,13 @@ nav a {
     align-items: center;
     padding: 0 14px 0 10px;
     font-size: 16px;
-    color: #B4B4B4;
+    border: 1px solid #808080;
     letter-spacing: 0;
     line-height: 18px;
 }
 
 .search-button.ready {
-    background: #F7C9F3;
     border: 1px solid #110038;
-    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
     color: black;
 }
 
@@ -314,8 +325,6 @@ nav a {
 }
 
 .suggestions .gif-box {
-    background: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     width: 288px;
     height: 313px;
     padding: 3px 4px 4px;
@@ -348,6 +357,7 @@ nav a {
     position: absolute;
     top: 231px;
     left: 7px;
+    border: 1px solid #4C2F99;
 }
 
 .close-button {
@@ -383,8 +393,6 @@ nav a {
 }
 
 .trends .gif-container:hover {
-    background: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     padding: 3px 4px 4px;
 }
 

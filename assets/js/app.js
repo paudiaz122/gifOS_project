@@ -11,9 +11,9 @@ function loadTheme() {
 
 
 /*OPEN THEME BUTTON*/
-
 var buttonOpen = false;
-var themeButton = document.getElementById('theme');
+const themeButton = document.getElementById('theme');
+const lupaImg = document.querySelector('.search-button img');
 
 function toggleButton() {
     buttonOpen = !buttonOpen;
@@ -21,18 +21,17 @@ function toggleButton() {
 }
 
 /*CHANGE THEME BUTTONS*/
-
 function changeCSS(theme, event) {
-
     event.preventDefault();
     const body = document.body;
-    //NO DEBERIA RECARGAR LA PAGINA!!
     if (theme === 'sailorNight') {
         body.setAttribute('theme', SAILORNIGHT);
+        lupaImg.setAttribute('src', './assets/img/combined_shape.svg');
         sessionStorage.setItem('theme', SAILORNIGHT);
     }
     else {
         body.setAttribute('theme', SAILORDAY);
+        lupaImg.setAttribute('src', './assets/img/lupa_inactive.svg');
         sessionStorage.setItem('theme', SAILORDAY);
     }
 }

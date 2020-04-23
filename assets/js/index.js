@@ -2,6 +2,7 @@ const APIKEY = 'Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k';
 const LIMITGIFS = 25;
 const lupaActive = './assets/img/lupa.svg';
 const lupaInactive = './assets/img/lupa_inactive.svg';
+const lupaInactiveNight = './assets/img/combined_shape.svg';
 
 //CREATE GUIFOS
 function goToCreateGuifos(event, element) {
@@ -19,7 +20,6 @@ const suggestionContainer = document.getElementsByClassName('search-suggestions'
 const searchInput = document.querySelector('.search-box input');
 const suggestionsSection = document.querySelector('section.suggestions');
 const trendDivNode = document.querySelector('.trends .gif-grid');
-//const gifGrid = document.getElementsByClassName('gif-grid')[0];
 
 //SEARCH
 function prepareSearch() {
@@ -44,21 +44,7 @@ async function getSearchResults(search) {
 function loadSearchPage(searchGifs) {
     trendsInput.placeholder = searchInputValue + ' (resultados)';
     trendDivNode.innerHTML = '';
-    searchGifs.data.forEach(gif => loadSearchGif(gif));
-}
-
-function loadSearchGif(gif) {
-    const gifURL = gif.images.downsized.url;
-
-    const div = document.createElement('div');
-    const img = document.createElement('img');
-
-    div.classList.add('gif-container');
-    img.setAttribute('src', gifURL);
-
-    div.append(img);
-
-    trendDivNode.append(div);
+    searchGifs.data.forEach(gif => loadGif(gif));
 }
 
 //SEARCH SUGGESTIONS
@@ -96,6 +82,11 @@ function toggleSearchButtonStatus() {
     } else {
         searchButtonElement.classList.remove('ready');
         lupaElement.setAttribute('src', lupaInactive);
+        // if(sessionStorage.getItem('theme') === SAILORNIGHT) {
+        //     lupaElement.setAttribute('src', lupaInactiveNight);
+        // } else {
+        //     lupaElement.setAttribute('src', lupaInactiveDay);
+        // }
     }
 }
 
@@ -116,47 +107,11 @@ function toggleSuggestions() {
     }
 }
 
-// function prepareSearch() {
-//     getSearchResults(searchInputValue); 
-// }
-
-//---------------------------------------------------
-
-
-// function showSuggestions() {
-//     suggestionContainer.innerHTML = '';
-//     for(let i=0; i<3; i++) {
-//         const div = document.createElement('div');
-//         const p = document.createElement('p');
-//         p.innerText = randomSuggestion();
-
-//         div.classList.add('suggestion-result');
-//         div.append(p);
-//         suggestionContainer.append(div);
-//     }
-// }
-
-// let flag = true;
-// function addButtonClass() {
-//     if(inputElement.value !== ''){
-//         searchButtonElement.classList.add('ready');
-//         lupaElement.setAttribute('src', lupaActive);
-
-//         if(inputElement.value.length >= 3) {
-//             suggestionContainer.classList.remove('hidden');
-//             if(flag === true) {
-//                 showSuggestions();
-//                 flag = false;
-//             }
-//         } else {
-//             suggestionContainer.classList.add('hidden');
-//             flag = true;
-//         }
-//     } else {
-//         searchButtonElement.classList.remove('ready');
-//         lupaElement.setAttribute('src', lupaInactive);
-//     }
-// }
+// const suggestionResultNode = document.getElementsByClassName('suggestion-result');
+// suggestionResultNode.addEventListener('click', event => {
+//     searchInput.value = event.target.innerHTML;
+//     prepareSearch();
+// })
 
 //HASHTAG CREATOR FUNCTIONS
 function hashtagCreator(stringToConvert) {

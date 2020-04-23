@@ -45,7 +45,6 @@ function startCheck() {
     checkWindow.classList.remove('hidden');
     createGuifosWindow.classList.add('hidden');
     getStreamAndRecord();
-    //startVideo();
 }
 
 checkOrigin();
