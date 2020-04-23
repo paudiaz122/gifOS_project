@@ -19,7 +19,7 @@ const suggestionContainer = document.getElementsByClassName('search-suggestions'
 const searchInput = document.querySelector('.search-box input');
 const suggestionsSection = document.querySelector('section.suggestions');
 const trendDivNode = document.querySelector('.trends .gif-grid');
-const gifGrid = document.getElementsByClassName('gif-grid')[0];
+//const gifGrid = document.getElementsByClassName('gif-grid')[0];
 
 //SEARCH
 function prepareSearch() {
@@ -43,7 +43,7 @@ async function getSearchResults(search) {
 
 function loadSearchPage(searchGifs) {
     trendsInput.placeholder = searchInputValue + ' (resultados)';
-    gifGrid.innerHTML = '';
+    trendDivNode.innerHTML = '';
     searchGifs.data.forEach(gif => loadSearchGif(gif));
 }
 
@@ -71,14 +71,22 @@ function randomSuggestion() {
     return randomSuggestionsArray[randomNumber];
 }
 
-function onSearchInputChange(event) {
+function onSearchInputChange() {
     searchInputValue = searchInput.value.trim();
     showSuggestions = searchInputValue.length >= 3;
-    if (event.keyCode === 13) { // Mandás la busqueda cuando se aprieta enter
-        prepareSearch();
-    }
+    
     toggleSearchButtonStatus();
     toggleSuggestions();
+}
+
+function onSearchInputKeydown(event) {
+    if (event.keyCode === 13) { // Mandás la busqueda cuando se aprieta enter
+        showSuggestions = false;
+
+        searchInput.blur();
+        toggleSuggestions();
+        prepareSearch();
+    }
 }
 
 function toggleSearchButtonStatus() { 

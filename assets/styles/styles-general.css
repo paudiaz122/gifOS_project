@@ -473,6 +473,11 @@ nav a {
     box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
 }
 
+.img-border video {
+    width: 100%;
+    height: 100%;
+}
+
 .capturar {
     position: absolute;
     right: 16px;
