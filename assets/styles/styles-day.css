@@ -42,10 +42,6 @@ body[theme='light'] {
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 
-/* [theme='light'] .search-button img {
-    background-image: url(../img/lupa_inactive.svg);
-} */
-
 [theme='light'] .search-button {
     background-color: #E6E6E6;
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
@@ -95,6 +91,8 @@ body[theme='light'] {
 [theme='light'] .see-more:hover {
     background: #3A72DB;
     box-shadow: inset -2px -2px 0 0 #284F99, inset 2px 2px 0 0 #FFFFFF;
+    outline: 1px dotted #110038;
+    outline-offset: -4px;
 }
 
 [theme='light'] .suggestions .gif-box {

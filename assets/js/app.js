@@ -1,14 +1,17 @@
-const SAILORDAY = 'light';
-const SAILORNIGHT = 'dark';
-
-
 /*LOAD THEME*/
 function loadTheme() {
     const theme = sessionStorage.getItem('theme') || SAILORDAY;
     const body = document.getElementsByTagName('body')[0];
-    body.setAttribute('theme', theme);
-}
 
+    body.setAttribute('theme', theme);
+
+    //TODO Esto se tiene que ejecutar SOLAMENTE si estoy en el index
+    if(theme === SAILORDAY) {
+        lupaElement.setAttribute('src', lupaInactive);
+    } else {
+        lupaElement.setAttribute('src', lupaInactiveNight);
+    }
+}
 
 /*OPEN THEME BUTTON*/
 var buttonOpen = false;
@@ -37,11 +40,4 @@ function changeCSS(theme, event) {
 }
 
 loadTheme();
-
-
-//https://api.giphy.com/v1/gifs/random?api_key=' + APIKEY + '&tag=&rating=G
-
-// const consultTrend = await fetch('https://api.giphy.com/v1/gifs/trending?api_key=Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k&limit=25&rating=G');
-// const consultParam = await fetch('http://api.giphy.com/v1/gifs/search?q=${searchParam}&api_key=WMgym4yAIPYofgGPrganKNA7n1vg2D5Y');
-// const consultRandom = await fetch('https://api.giphy.com/v1/gifs/random?api_key=Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k&tag=&rating=G');
 

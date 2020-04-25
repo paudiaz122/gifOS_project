@@ -3,6 +3,8 @@ const LIMITGIFS = 25;
 const lupaActive = './assets/img/lupa.svg';
 const lupaInactive = './assets/img/lupa_inactive.svg';
 const lupaInactiveNight = './assets/img/combined_shape.svg';
+const SAILORDAY = 'light';
+const SAILORNIGHT = 'dark';
 
 //CREATE GUIFOS
 function goToCreateGuifos(event, element) {
@@ -81,12 +83,11 @@ function toggleSearchButtonStatus() {
         lupaElement.setAttribute('src', lupaActive);
     } else {
         searchButtonElement.classList.remove('ready');
-        lupaElement.setAttribute('src', lupaInactive);
-        // if(sessionStorage.getItem('theme') === SAILORNIGHT) {
-        //     lupaElement.setAttribute('src', lupaInactiveNight);
-        // } else {
-        //     lupaElement.setAttribute('src', lupaInactiveDay);
-        // }
+        if(sessionStorage.getItem('theme') === SAILORDAY) {
+            lupaElement.setAttribute('src', lupaInactive);
+        } else {
+            lupaElement.setAttribute('src', lupaInactiveNight);
+        }
     }
 }
 

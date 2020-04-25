@@ -19,10 +19,6 @@ body[theme='dark'] {
     background: #CCCCCC;
 }
 
-/* [theme='dark'] .suggestion-result:hover {
-TODO agregar borde
-} */
-
 [theme='dark'] button,
 [theme='dark'] .guifos {
     background: #EE3EFE;
@@ -40,15 +36,13 @@ TODO agregar borde
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
 }
 
-/* [theme='dark'] .search-button img {
-    background-image: url(../img/combined_shape.svg);
-} */
-
 [theme='dark'] .search-button {
     background: #B4B4B4;
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
     color: #8F8F8F;
 }
+
+/* TODO FALTA CAMBIAR LUPA!! */
 
 [theme='dark'] .search-button.ready {
     background: #EE3EFE;
@@ -99,6 +93,8 @@ TODO agregar borde
 [theme='dark'] .see-more:hover {
     background: #2629CC;
     box-shadow: inset -2px -2px 0 0 #2124B3, inset 2px 2px 0 0 #FFFFFF;
+    outline: 1px dotted #110038;
+    outline-offset: -4px;
 }
 
 [theme='dark'] .suggestions .gif-box {
@@ -110,5 +106,3 @@ TODO agregar borde
     background: #B4B4B4;
     box-shadow: inset -2px -2px 0 0 #5C5C5C, inset 2px 2px 0 0 #FFFFFF;
 }
-
-/*TODO color de la lupa*/

@@ -101,15 +101,13 @@ nav .container {
     position: relative;
 } */
 
-/* button::before:hover {
-    position: absolute;
-    border: 1px dotted #110038;
-    content: "";
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-    left: 2px;
-} */
+button:hover,
+.nav-button .guifos:hover,
+button:active,
+.nav-button .guifos:active {
+    outline: 1px dotted #110038;
+    outline-offset: -4px;
+}
 
 .nav-button {
     display: flex;
@@ -302,8 +300,12 @@ nav a {
     margin-bottom: 16px;
 }
 
-/************* Gifs Containers *************/
+.suggestion-result:hover {
+    outline: 1px dotted #110038;
+    outline-offset: -4px;
+}
 
+/************* Gifs Containers *************/
 .suggestions .container {
     padding-top: 64px;
 }
@@ -368,6 +370,11 @@ nav a {
     border: none;
 }
 
+.gif-container img:hover {
+    outline: 1px dotted #110038;
+    outline-offset: -2px;
+}
+
 /************* trends *************/
 .trends .container {
     padding-top: 64px;
@@ -401,7 +408,6 @@ nav a {
 }
 
 /************* Create Guifos *************/
-
 .hidden {
     display: none !important;
 }
@@ -494,8 +500,9 @@ nav a {
 }
 
 .capturar span {
-    padding-top: 8px; /* TODO deberia ser 9 pero queda descentrado */
-    padding-bottom: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .capturar img {
@@ -505,4 +512,25 @@ nav a {
 .capturar .button-text {
     width: 144px;
     border-left: 1px solid #110038;
+}
+
+.capturar.recording {
+    background: #FF6161;
+    /* border: 1px solid #110038; */
+    box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
+    color: white;
+}
+
+.counter {
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+    width: 134px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 496px;
+    left: 11px;
 }
