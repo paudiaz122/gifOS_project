@@ -1,3 +1,4 @@
+const APIKEY = 'Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k';
 const lupaActive = './assets/img/lupa.svg';
 const lupaInactive = './assets/img/lupa_inactive.svg';
 const lupaInactiveNight = './assets/img/combined_shape.svg';
@@ -22,18 +23,24 @@ function loadTheme() {
     if(theme === 'light') {
         sailorDayButton.classList.add('selected');
         sailorNightButton.classList.remove('selected');
+        if(lupaElement) {
+            lupaElement.setAttribute('src', lupaInactive);
+        }
     } else {
         sailorDayButton.classList.remove('selected');
         sailorNightButton.classList.add('selected');
-    }
-
-    if (lupaElement) {
-        if(theme === 'light') {
-            lupaElement.setAttribute('src', lupaInactive);
-        } else {
+        if(lupaElement) {
             lupaElement.setAttribute('src', lupaInactiveNight);
         }
     }
+
+    // if (lupaElement) {
+    //     if(theme === 'light') {
+    //         lupaElement.setAttribute('src', lupaInactive);
+    //     } else {
+    //         lupaElement.setAttribute('src', lupaInactiveNight);
+    //     }
+    // }
 }
 
 /*OPEN THEME BUTTON*/

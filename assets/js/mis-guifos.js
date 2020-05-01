@@ -3,10 +3,16 @@ const createGuifosWindow = document.querySelector(".window-container.start");
 const createGuifosSection = document.getElementsByClassName("create-guifos")[0];
 const checkWindow = document.querySelector('.window-container.check');
 const video = document.querySelector('video');
+const buttonCapturar = document.querySelector('.capturar');
+const buttonRecording = document.querySelector('.recording');
+const counter = document.querySelector('.counter');
 const gifPreview = document.querySelector('.gif-preview');
+const remakeButton = document.querySelector('.remake-gif');
+const uploadButton = document.querySelector('.upload-gif');
 let seconds = 0;
 let recorder;
 let myTimer;
+let gifURL;
 const constraints = {
     audio: false,
     video: {
@@ -103,9 +109,14 @@ function stopToRecordOnWindow() {
 
         form.append('file', blob, 'myGif.gif');
 
-        gifPreview.setAttribute('src', URL.createObjectURL(blob));
-        gifPreview.classList.remove('hidden');
-        video.classList.add('hidden');
+        gifURL = URL.createObjectURL(blob);
+        gifPreview.setAttribute('src', gifURL);
+
+        console.log(form.get('file'));
+
+        changeToPreviewStyle();
+        // gifPreview.classList.remove('hidden');
+        // video.classList.add('hidden');
 
         // console.log(form, gifSrc);
         // TODO: Post a la API
@@ -113,10 +124,6 @@ function stopToRecordOnWindow() {
 }
 
 function changeToRecordingStyle() {
-    const buttonCapturar = document.querySelector('.capturar');
-    const buttonRecording = document.querySelector('.recording');
-    const counter = document.querySelector('.counter');
-
     buttonCapturar.classList.add('hidden');
     counter.classList.remove('hidden');
     buttonRecording.classList.remove('hidden');
@@ -125,6 +132,19 @@ function changeToRecordingStyle() {
 function stopTimer(myTimer) {
     clearInterval(myTimer);
     seconds = 0;
+}
+
+function changeToPreviewStyle() {
+    gifPreview.classList.remove('hidden');
+    video.classList.add('hidden');
+
+    remakeButton.remove('hidden');
+    uploadButton.remove('hidden');
+    buttonRecording.classList.add('hidden');
+}
+
+function uploadGif() {
+    'https://upload.giphy.com/v1/gifs?api_key=' + APIKEY + '&source_image_url=' + gifURL
 }
 
 checkOrigin();

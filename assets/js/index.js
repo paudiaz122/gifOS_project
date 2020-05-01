@@ -1,4 +1,3 @@
-const APIKEY = 'Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k';
 const LIMITGIFS = 25;
 const searchButtonElement = document.getElementById('search');
 const trendsInput = document.querySelector('.trends input');
@@ -19,7 +18,6 @@ function goToCreateGuifos(event, element) {
 }
 
 /*USING GIPHY API*/
-
 //SEARCH
 function prepareSearch() {
     localStorage.setItem('search', searchInputValue);
@@ -61,7 +59,7 @@ function onSearchInputChange() {
 }
 
 function onSearchInputKeydown(event) {
-    if (event.keyCode === 13) { // Mandás la busqueda cuando se aprieta enter
+    if (event.keyCode === 13) { // Manda la busqueda cuando se aprieta enter
         showSuggestions = false;
 
         searchInput.blur();

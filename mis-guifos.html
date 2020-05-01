@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="./assets/styles/styles-general.css">
     <script src="https://kit.fontawesome.com/b3c5c11f23.js" crossorigin="anonymous"></script>
 </head>
-<body theme="light">
+<body data-theme="light">
     <header>
-        <p>¡Bienvenidos/as a Guifos.com! ------Donde los gifs están.////// Número de visitas 12.765.803</p> <!-- TODO -->
+        <p>¡Bienvenidos/as a Guifos.com! ------Donde los gifs están.////// Número de visitas 12.765.803</p>
     </header>
     <nav>
         <div class="container">
@@ -73,7 +73,6 @@
             <div class="counter hidden">
                 <p>00:00:00</p>
             </div>
-            <!-- <button class="capturar" onclick="changeToRecordingStyle();">    -->
             <button class="capturar" onclick="startToRecordOnWindow();">
                 <div class="button-container">
                     <span class="icon"><img src="./assets/img/camera.svg" alt="Camera"></span>
@@ -87,6 +86,9 @@
                     <span class="button-text">Listo</span>
                 </div>
             </button>
+
+            <button class="remake-gif hidden" onclick="startToRecordOnWindow();">Repetir Captura</button>
+            <button class="upload-gif hidden" onclick="uploadGif();">Subir Guifo</button>
         </div>
     </section>
     <section class="mis-guifos">
