@@ -11,6 +11,15 @@ body[theme='light'] {
     background-image: url(../img/gifof_logo.png);
 }
 
+[theme='light'] a.my-guifos:hover {
+    outline: 1px dotted #110038;
+    outline-offset: 4px;
+}
+
+[theme='light'] a.my-guifos:active {
+    color: #8f8a9b;
+}
+
 [theme='light'] .bar {
     background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
 }
@@ -72,6 +81,12 @@ body[theme='light'] {
 }
 
 [theme='light'] nav li {
+    background: #F0F0F0;
+    border: 1px solid #808080;
+    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+}
+
+[theme='light'] nav li.selected {
     background-color: #FFF4FD;
     border: 1px solid #CCA6C9;
     box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF;
@@ -103,4 +118,13 @@ body[theme='light'] {
 [theme='light'] .trends .gif-container:hover {
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+}
+
+[theme='light'] button.comenzar {
+    color: #110038;
+}
+
+[theme='light'] .theme .recording span.button-text,
+[theme='light'] .recording .icon {
+    box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
 }

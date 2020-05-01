@@ -1,10 +1,15 @@
 const APIKEY = 'Zn4f1vgWPpB8sJJWHu6xhkVn5L7yMo9k';
 const LIMITGIFS = 25;
-const lupaActive = './assets/img/lupa.svg';
-const lupaInactive = './assets/img/lupa_inactive.svg';
-const lupaInactiveNight = './assets/img/combined_shape.svg';
-const SAILORDAY = 'light';
-const SAILORNIGHT = 'dark';
+const searchButtonElement = document.getElementById('search');
+const trendsInput = document.querySelector('.trends input');
+const suggestionContainer = document.getElementsByClassName('search-suggestions')[0];
+const searchInput = document.querySelector('.search-box input');
+const suggestionsSection = document.querySelector('section.suggestions');
+const trendDivNode = document.querySelector('.trends .gif-grid');
+
+let randomSuggestionsArray = ['Love', 'Cats', 'Animals', 'Dogs', 'Sports', 'Famous', 'Funny', 'Reaction', 'Mood', 'Saturday'];
+let searchInputValue = '';
+let showSuggestions = false;
 
 //CREATE GUIFOS
 function goToCreateGuifos(event, element) {
@@ -14,14 +19,6 @@ function goToCreateGuifos(event, element) {
 }
 
 /*USING GIPHY API*/
-
-const searchButtonElement = document.getElementById('search');
-const trendsInput = document.querySelector('.trends input');
-const lupaElement = document.querySelector('.search-button img');
-const suggestionContainer = document.getElementsByClassName('search-suggestions')[0];
-const searchInput = document.querySelector('.search-box input');
-const suggestionsSection = document.querySelector('section.suggestions');
-const trendDivNode = document.querySelector('.trends .gif-grid');
 
 //SEARCH
 function prepareSearch() {
@@ -50,10 +47,6 @@ function loadSearchPage(searchGifs) {
 }
 
 //SEARCH SUGGESTIONS
-let randomSuggestionsArray = ['Love', 'Cats', 'Animals', 'Dogs', 'Sports', 'Famous', 'Funny', 'Reaction', 'Mood', 'Saturday'];
-let searchInputValue = '';
-let showSuggestions = false;
-
 function randomSuggestion() {
     let randomNumber = Math.round(Math.random() * 9);
     return randomSuggestionsArray[randomNumber];
