@@ -62,13 +62,22 @@
                 <button class="comenzar" onclick="startCheck();">Comenzar</button>
             </div>
         </div>
+
         <div class="window-container check hidden">
             <div class="bar">
                 <p>Un Chequeo Antes de Empezar</p>
             </div>
             <div class="img-border">
                 <video src=""></video>
-                <img class="hidden gif-preview">
+                <img class="hidden gif-preview" alt="Gif preview">
+                <div class="uploading hidden">
+                    <img src="./assets/img/globe_img.png" alt="Globe">
+                    <h2>Estamos subiendo tu guifo...</h2>
+                    <div class="progress-bar">
+
+                    </div>
+                    <p>Tiempo restante: <del>38 años</del> algunos minutos</p>
+                </div>
             </div>
             <div class="counter hidden">
                 <p>00:00:00</p>
@@ -79,25 +88,34 @@
                     <span class="button-text">Capturar</span>
                 </div>
             </button>
-
             <button class="recording hidden" onclick="stopToRecordOnWindow();">
                 <div class="button-container">
                     <span class="icon"><img src="./assets/img/recording.svg" alt="Camera"></span>
                     <span class="button-text">Listo</span>
                 </div>
             </button>
-
-            <button class="remake-gif hidden" onclick="startToRecordOnWindow();">Repetir Captura</button>
+            <button class="remake-gif hidden" onclick="startToRecordOnWindow();">Repetir Captura</button> <!-- TODO darle funcionalidad -->
             <button class="upload-gif hidden" onclick="uploadGif();">Subir Guifo</button>
+            <button class="cancelar hidden">Cancelar</button> <!-- TODO darle funcionalidad -->
+        </div>
+
+        <div class="window-container uploaded hidden">
+            <div class="bar">
+                <p>Guifo Subido Con Éxito</p>
+            </div>
+            <div class="img-border">
+                <img src="" alt="Your gif">
+            </div>
+            <h2>Guifo creado con éxito</h2>
+            <button class="copy-link">Copiar Enlace Guifo</button>
+            <button class="download-gif">Descargar Guifo</button>
+            <button class="ready">Listo</button>
         </div>
     </section>
     <section class="mis-guifos">
         <div class="container">
             <input type="text" placeholder="Mis guifos" disabled>
             <div class="gif-grid">
-                <div class="gif-container">
-                    <img src="" alt="Mi Gif">
-                </div>
             </div>
         </div>
     </section>

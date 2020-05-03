@@ -1,7 +1,7 @@
-/*CREATE GIFOS*/
 const createGuifosWindow = document.querySelector(".window-container.start");
 const createGuifosSection = document.getElementsByClassName("create-guifos")[0];
 const checkWindow = document.querySelector('.window-container.check');
+const titleWindowBar = document.querySelector('.window-container.check .bar p');
 const video = document.querySelector('video');
 const buttonCapturar = document.querySelector('.capturar');
 const buttonRecording = document.querySelector('.recording');
@@ -9,10 +9,16 @@ const counter = document.querySelector('.counter');
 const gifPreview = document.querySelector('.gif-preview');
 const remakeButton = document.querySelector('.remake-gif');
 const uploadButton = document.querySelector('.upload-gif');
+const buttonCancelarUpload = document.querySelector('.window-container.check button.cancelar');
+const uploadingBackground = document.querySelector('.uploading');
+const myGuifosDivNode = document.querySelector('.mis-guifos .gif-grid');
 let seconds = 0;
 let recorder;
 let myTimer;
 let gifURL;
+let form;
+let myGifs = [];
+let index = 0;
 const constraints = {
     audio: false,
     video: {
@@ -27,6 +33,49 @@ function checkOrigin() {
     }
 }
 
+async function loadMyGuifosPage() {
+    // let gifsArray = JSON.parse(localStorage.getItem('gifs'));
+
+    for(let i = 0; i <= localStorage.length - 1; i++) {
+        let id = localStorage.getItem(localStorage.key(i));
+        let myGifById = await getGifByID(id);
+        console.log(myGifById);
+        loadMyGif(myGifById.data.images.downsized.url);
+    }
+}
+
+async function getGifByID(id) {
+    const consultById = await fetch('https://api.giphy.com/v1/gifs/' + id +'?api_key=' + APIKEY)
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => {
+            return error;
+        })
+    return consultById;
+}
+
+function loadMyGif(gifURL) {
+    const gifHashtag = 'myGIF';
+
+    const div = document.createElement('div');
+    const img = document.createElement('img');
+    const divBar = document.createElement('div');
+    const p = document.createElement('p');
+
+    div.classList.add('gif-container');
+    divBar.classList.add('bar');
+    img.setAttribute('src', gifURL);
+    p.innerHTML = hashtagCreatorForTrends(gifHashtag);
+
+    div.append(img);
+    divBar.append(p);
+    div.append(divBar);
+
+    myGuifosDivNode.append(div);
+}
+
+/*CREATE GIFOS*/
 function createGuifos() {
     //tomo todos los elementos de html que necesito mostrar u ocultar
     const navButton = document.getElementsByClassName("nav-button")[0];
@@ -45,7 +94,7 @@ function startCheck() {
     checkWindow.classList.remove('hidden');
     createGuifosWindow.classList.add('hidden');
 
-    if(sessionStorage.getItem('theme') === 'dark') {
+    if(sessionStorage.getItem('data-theme') === 'dark') {
         cameraImg.setAttribute('src', './assets/img/camera_light.svg');
     } else {
         cameraImg.setAttribute('src', './assets/img/camera.svg');
@@ -70,7 +119,7 @@ function getStreamAndRecord () {
         video.srcObject = stream;
         video.play();
     }).catch(error => {
-        alert('No se puede acceder a tu cámara. Por favor, chequeá los console logs.');
+        alert('No se puede acceder a tu cámara. Por favor, chequeá la consola.');
         console.error(error);
     })
 }
@@ -104,7 +153,7 @@ function stopToRecordOnWindow() {
     stopTimer(myTimer);
 
     recorder.stopRecording(() => {
-        let form = new FormData();
+        form = new FormData();
         let blob = recorder.getBlob();
 
         form.append('file', blob, 'myGif.gif');
@@ -115,11 +164,6 @@ function stopToRecordOnWindow() {
         console.log(form.get('file'));
 
         changeToPreviewStyle();
-        // gifPreview.classList.remove('hidden');
-        // video.classList.add('hidden');
-
-        // console.log(form, gifSrc);
-        // TODO: Post a la API
     });
 }
 
@@ -127,6 +171,7 @@ function changeToRecordingStyle() {
     buttonCapturar.classList.add('hidden');
     counter.classList.remove('hidden');
     buttonRecording.classList.remove('hidden');
+    titleWindowBar.innerHTML = 'Capturando Tu Guifo';
 }
 
 function stopTimer(myTimer) {
@@ -138,13 +183,45 @@ function changeToPreviewStyle() {
     gifPreview.classList.remove('hidden');
     video.classList.add('hidden');
 
-    remakeButton.remove('hidden');
-    uploadButton.remove('hidden');
+    remakeButton.classList.remove('hidden');
+    uploadButton.classList.remove('hidden');
     buttonRecording.classList.add('hidden');
+    titleWindowBar.innerHTML = 'Vista Previa';
 }
 
 function uploadGif() {
-    'https://upload.giphy.com/v1/gifs?api_key=' + APIKEY + '&source_image_url=' + gifURL
+    fetch('https://upload.giphy.com/v1/gifs?api_key=' + APIKEY + '&source_image_url=' + gifURL, {
+        method: "POST",
+        body: form
+    }).then(async res => {
+        let jsonRes = await res.json(); //Convierto la respuesta a JSON
+        saveGifInLocaStorage(jsonRes); //Guardo ID del GIF en localStorage
+        changeToUploadedStyle();
+        return jsonRes;
+    })
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+    
+    changeToUploadingStyle();
+}
+
+function saveGifInLocaStorage(gifResponse) {
+    localStorage.setItem(gifResponse.data.id, gifResponse.data.id);
+}
+
+function changeToUploadingStyle() {
+    uploadingBackground.classList.remove('hidden');
+    buttonCancelarUpload.classList.remove('hidden');
+    gifPreview.classList.add('hidden');
+    remakeButton.classList.add('hidden');
+    uploadButton.classList.add('hidden');
+    counter.classList.add('hidden');
+    titleWindowBar.innerHTML = 'Subiendo Guifo';
+}
+
+function changeToUploadedStyle() {
+    
 }
 
 checkOrigin();
+loadMyGuifosPage();

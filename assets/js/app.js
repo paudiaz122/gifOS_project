@@ -10,14 +10,15 @@ const themeButton = document.getElementById('theme');
 const lupaImg = document.querySelector('.search-button img');
 const sailorDayButton = document.getElementById('sailor-day');
 const sailorNightButton = document.getElementById('sailor-night');
+const trendDivNode = document.querySelector('.trends .gif-grid');
 var buttonOpen = false;
 
 /*LOAD THEME*/
 function loadTheme() {
-    const theme = sessionStorage.getItem('theme') || SAILORDAY;
+    const theme = sessionStorage.getItem('data-theme') || SAILORDAY;
     const body = document.getElementsByTagName('body')[0];
 
-    body.setAttribute('theme', theme);
+    body.setAttribute('data-theme', theme);
 
     //TODO Esto se tiene que ejecutar SOLAMENTE si estoy en el index
     if(theme === 'light') {
@@ -33,14 +34,6 @@ function loadTheme() {
             lupaElement.setAttribute('src', lupaInactiveNight);
         }
     }
-
-    // if (lupaElement) {
-    //     if(theme === 'light') {
-    //         lupaElement.setAttribute('src', lupaInactive);
-    //     } else {
-    //         lupaElement.setAttribute('src', lupaInactiveNight);
-    //     }
-    // }
 }
 
 /*OPEN THEME BUTTON*/
@@ -54,20 +47,33 @@ function changeCSS(theme, event) {
     event.preventDefault();
     const body = document.body;
     if (theme === 'sailorNight') {
-        body.setAttribute('theme', SAILORNIGHT);
+        body.setAttribute('data-theme', SAILORNIGHT);
         lupaImg.setAttribute('src', './assets/img/combined_shape.svg');
-        sessionStorage.setItem('theme', SAILORNIGHT);
+        sessionStorage.setItem('data-theme', SAILORNIGHT);
         sailorDayButton.classList.remove('selected');
         sailorNightButton.classList.add('selected');
     }
     else {
-        body.setAttribute('theme', SAILORDAY);
+        body.setAttribute('data-theme', SAILORDAY);
         lupaImg.setAttribute('src', './assets/img/lupa_inactive.svg');
-        sessionStorage.setItem('theme', SAILORDAY);
+        sessionStorage.setItem('data-theme', SAILORDAY);
         sailorDayButton.classList.add('selected');
         sailorNightButton.classList.remove('selected');
     }
 }
 
-loadTheme();
+//HASHTAG CREATOR FOR TREND AND MY GIFS
+function hashtagCreatorForTrends(stringToConvert) {
+    let finalString = '';
+    let index = stringToConvert.indexOf(' ');
+    
+    while(index != -1) {
 
+        finalString = finalString + stringToConvert.slice(0, index) + ' #';
+        stringToConvert = stringToConvert.slice(index + 1);
+        index = stringToConvert.indexOf(' ');
+    }
+    return '#' + finalString + stringToConvert;
+}
+
+loadTheme();

@@ -385,7 +385,8 @@ nav a {
     margin-bottom: 20px;
 }
 
-.trends .bar {
+.trends .bar,
+.mis-guifos .bar {
     position: absolute;
     left: 4px;
     right: 4px;
@@ -393,18 +394,21 @@ nav a {
     display: none;
 }
 
-.trends .gif-container {
+.trends .gif-container,
+.mis-guifos .gif-container {
     margin-bottom: 16px;
     width: 288px;
     height: 298px;
     position: relative;
 }
 
-.trends .gif-container:hover {
+.trends .gif-container:hover,
+.mis-guifos .gif-container:hover {
     padding: 3px 4px 4px;
 }
 
-.trends .gif-container:hover .bar{
+.trends .gif-container:hover .bar,
+.mis-guifos .gif-container:hover .bar{
     display: block;
 }
 
@@ -441,7 +445,8 @@ nav a {
     /*TODO espaciar los parrafos*/
 }
 
-.text-container h2 {
+.text-container h2,
+.uploading h2 {
     font-size: 16px;
     color: #110038;
     letter-spacing: 0;
@@ -460,7 +465,8 @@ nav a {
     margin: 28px 36px 0 344px;
 }
 
-.create-button-container button {
+.create-button-container button,
+.cancelar {
     width: 144px;
     height: 36px;
 }
@@ -548,4 +554,52 @@ button.recording {
     position: absolute;
     top: 496px;
     left: 11px;
+}
+
+.remake-gif,
+.upload-gif,
+.window-container.check .cancelar {
+    width: 144px;
+    height: 36px;
+    position: absolute;
+    bottom: 16px;
+}
+
+.upload-gif,
+.window-container.check .cancelar {
+    right: 16px;
+}
+
+.remake-gif {
+    right: 174px;
+}
+
+.uploading {
+    padding-top: 139px;
+    padding-bottom: 138px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploading img {
+    width: 36px;
+    height: 48px;
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    margin-top: 39px;
+    margin-bottom: 8px;
+    background-color: pink;
+    width: 324px;
+    height: 24px;
+}
+
+.uploading p {
+    font-size: 12px;
+    color: rgba(17,0,56,0.64);
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 14px;
 }

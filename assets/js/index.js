@@ -4,7 +4,6 @@ const trendsInput = document.querySelector('.trends input');
 const suggestionContainer = document.getElementsByClassName('search-suggestions')[0];
 const searchInput = document.querySelector('.search-box input');
 const suggestionsSection = document.querySelector('section.suggestions');
-const trendDivNode = document.querySelector('.trends .gif-grid');
 
 let randomSuggestionsArray = ['Love', 'Cats', 'Animals', 'Dogs', 'Sports', 'Famous', 'Funny', 'Reaction', 'Mood', 'Saturday'];
 let searchInputValue = '';
@@ -20,7 +19,7 @@ function goToCreateGuifos(event, element) {
 /*USING GIPHY API*/
 //SEARCH
 function prepareSearch() {
-    localStorage.setItem('search', searchInputValue);
+    sessionStorage.setItem('search', searchInputValue); //TODO completar botones azules
     suggestionContainer.classList.add('hidden');
     suggestionsSection.classList.add('hidden');
     searchInputValue = searchInput.value.trim();
@@ -111,19 +110,6 @@ function hashtagCreator(stringToConvert) {
     let index = stringToConvert.indexOf(' ');
     while(index != -1) {
         finalString = finalString + stringToConvert.slice(0, index);
-        stringToConvert = stringToConvert.slice(index + 1);
-        index = stringToConvert.indexOf(' ');
-    }
-    return '#' + finalString + stringToConvert;
-}
-
-function hashtagCreatorForTrends(stringToConvert) {
-    let finalString = '';
-    let index = stringToConvert.indexOf(' ');
-    
-    while(index != -1) {
-
-        finalString = finalString + stringToConvert.slice(0, index) + ' #';
         stringToConvert = stringToConvert.slice(index + 1);
         index = stringToConvert.indexOf(' ');
     }
