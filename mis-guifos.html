@@ -94,9 +94,9 @@
                     <span class="button-text">Listo</span>
                 </div>
             </button>
-            <button class="remake-gif hidden" onclick="startToRecordOnWindow();">Repetir Captura</button> <!-- TODO darle funcionalidad -->
+            <button class="remake-gif hidden" onclick="reDoGif();">Repetir Captura</button> <!-- TODO darle funcionalidad -->
             <button class="upload-gif hidden" onclick="uploadGif();">Subir Guifo</button>
-            <button class="cancelar hidden">Cancelar</button> <!-- TODO darle funcionalidad -->
+            <button class="cancelar hidden" onclick="abortUpload();">Cancelar</button> <!-- TODO darle funcionalidad -->
         </div>
 
         <div class="window-container uploaded hidden">
@@ -107,9 +107,11 @@
                 <img src="" alt="Your gif">
             </div>
             <h2>Guifo creado con éxito</h2>
-            <button class="copy-link">Copiar Enlace Guifo</button>
-            <button class="download-gif">Descargar Guifo</button>
-            <button class="ready">Listo</button>
+            <div class="uploaded-buttons">
+                <button class="copy-link" onclick="copyMyGifLink();">Copiar Enlace Guifo</button>
+                <button class="download-gif" onclick="downloadMyGif();">Descargar Guifo</button>
+            </div>
+            <button class="ready" onclick="GifDone();">Listo</button>
         </div>
     </section>
     <section class="mis-guifos">

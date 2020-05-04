@@ -4,6 +4,7 @@ const trendsInput = document.querySelector('.trends input');
 const suggestionContainer = document.getElementsByClassName('search-suggestions')[0];
 const searchInput = document.querySelector('.search-box input');
 const suggestionsSection = document.querySelector('section.suggestions');
+const suggestionResultNode = document.getElementsByClassName('suggestion-result');
 
 let randomSuggestionsArray = ['Love', 'Cats', 'Animals', 'Dogs', 'Sports', 'Famous', 'Funny', 'Reaction', 'Mood', 'Saturday'];
 let searchInputValue = '';
@@ -98,11 +99,12 @@ function toggleSuggestions() {
     }
 }
 
-// const suggestionResultNode = document.getElementsByClassName('suggestion-result');
-// suggestionResultNode.addEventListener('click', event => {
-//     searchInput.value = event.target.innerHTML;
-//     prepareSearch();
-// })
+for (let i = 0; i < suggestionResultNode.length; i++) {
+    suggestionResultNode[i].addEventListener('click', event => {
+        searchInput.value = event.target.innerHTML;
+        prepareSearch();
+    })
+}
 
 //HASHTAG CREATOR FUNCTIONS
 function hashtagCreator(stringToConvert) {

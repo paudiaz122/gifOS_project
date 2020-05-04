@@ -445,8 +445,9 @@ nav a {
     /*TODO espaciar los parrafos*/
 }
 
-.text-container h2,
-.uploading h2 {
+/* .text-container h2,
+.uploading h2 */
+h2 {
     font-size: 16px;
     color: #110038;
     letter-spacing: 0;
@@ -602,4 +603,54 @@ button.recording {
     letter-spacing: 0;
     text-align: center;
     line-height: 14px;
+}
+
+.window-container.uploaded {
+    margin: 0 auto;
+    width: 721px;
+    height: 391px;
+    padding: 3px 4px 4px;
+    position: relative;
+}
+
+.uploaded .img-border {
+    width: 371px;
+    height: 196px;
+    padding: 3px;
+    position: absolute;
+    top: 54px;
+    left: 24px;
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+}
+
+.uploaded h2 {
+    position: absolute;
+    top: 76px;
+    right: 129px;
+}
+
+.uploaded-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 114px;
+    right: 46px;
+    width: 256px;
+    height: 86px;
+}
+
+.uploaded-buttons button {
+    height: 36px;
+    width: 100%;
+}
+
+.uploaded .ready {
+    width: 144px;
+    height: 36px;
+    position: absolute;
+    bottom: 44px;
+    right: 46px;
 }

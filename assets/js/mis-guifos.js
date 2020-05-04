@@ -12,6 +12,15 @@ const uploadButton = document.querySelector('.upload-gif');
 const buttonCancelarUpload = document.querySelector('.window-container.check button.cancelar');
 const uploadingBackground = document.querySelector('.uploading');
 const myGuifosDivNode = document.querySelector('.mis-guifos .gif-grid');
+const uploadedWindow = document.querySelector('.window-container.uploaded');
+const uploadedGifImg = document.querySelector('.uploaded img');
+const timer = document.querySelector('.counter p');
+const controller = new AbortController()
+const signal = controller.signal
+let myGifURL;
+let copied = 0;
+let downloaded = 0;
+let jsonRes;
 let seconds = 0;
 let recorder;
 let myTimer;
@@ -34,12 +43,10 @@ function checkOrigin() {
 }
 
 async function loadMyGuifosPage() {
-    // let gifsArray = JSON.parse(localStorage.getItem('gifs'));
-
     for(let i = 0; i <= localStorage.length - 1; i++) {
         let id = localStorage.getItem(localStorage.key(i));
         let myGifById = await getGifByID(id);
-        console.log(myGifById);
+        //console.log(myGifById);
         loadMyGif(myGifById.data.images.downsized.url);
     }
 }
@@ -132,8 +139,6 @@ function startToRecordOnWindow() {
 }
 
 function incrementSeconds() {
-    const timer = document.querySelector('.counter p');
-
     if(seconds < 60) {
         seconds++;
 
@@ -192,10 +197,11 @@ function changeToPreviewStyle() {
 function uploadGif() {
     fetch('https://upload.giphy.com/v1/gifs?api_key=' + APIKEY + '&source_image_url=' + gifURL, {
         method: "POST",
-        body: form
+        body: form,
+        signal: signal
     }).then(async res => {
-        let jsonRes = await res.json(); //Convierto la respuesta a JSON
-        saveGifInLocaStorage(jsonRes); //Guardo ID del GIF en localStorage
+        jsonRes = await res.json(); //Convierto la respuesta a JSON
+        saveGifInLocaStorage(); //Guardo ID del GIF en localStorage
         changeToUploadedStyle();
         return jsonRes;
     })
@@ -205,8 +211,26 @@ function uploadGif() {
     changeToUploadingStyle();
 }
 
-function saveGifInLocaStorage(gifResponse) {
-    localStorage.setItem(gifResponse.data.id, gifResponse.data.id);
+function abortUpload() {
+    console.log('Now aborting');
+    controller.abort()
+    window.location.reload();
+}
+
+function reDoGif() {
+    timer.innerHTML = '00:00:00';
+    remakeButton.classList.add('hidden');
+    uploadButton.classList.add('hidden');
+    counter.classList.add('hidden');
+    gifPreview.classList.add('hidden');
+    video.classList.remove('hidden');
+    buttonCapturar.classList.remove('hidden');
+
+    startCheck();
+}
+
+function saveGifInLocaStorage() {
+    localStorage.setItem(jsonRes.data.id, jsonRes.data.id);
 }
 
 function changeToUploadingStyle() {
@@ -220,7 +244,40 @@ function changeToUploadingStyle() {
 }
 
 function changeToUploadedStyle() {
-    
+    checkWindow.classList.add('hidden');
+    uploadedWindow.classList.remove('hidden');
+    uploadedGifImg.setAttribute('src', gifURL);
+}
+
+async function copyMyGifLink() {
+    copied = 1;
+
+    if(downloaded === 1) {
+        await navigator.clipboard.writeText(myGifURL);
+    } else {
+        let myGifById = await getGifByID(jsonRes.data.id);
+        myGifURL = myGifById.data.images.downsized.url;
+        await navigator.clipboard.writeText(myGifURL);
+    }
+}
+
+async function downloadMyGif() {
+    downloaded = 1;
+
+    if(copied === 1) {
+        await recorder.save(myGifURL);
+    } else {
+        let myGifById = await getGifByID(jsonRes.data.id);
+        myGifURL = myGifById.data.images.downsized.url;
+        await recorder.save(myGifURL);
+    }
+}
+
+function GifDone() {
+    downloaded = 0;
+    copied = 0;
+    timer.innerHTML = '00:00:00';
+    window.location.reload();
 }
 
 checkOrigin();
