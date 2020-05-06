@@ -87,23 +87,22 @@ function toggleSuggestions() {
     if (showSuggestions) {
         suggestionContainer.classList.remove('hidden');
         for(let i=0; i<3; i++) {
+            const suggestionText = randomSuggestion();
             const div = document.createElement('div');
             const p = document.createElement('p');
-            p.innerText = randomSuggestion();
+            p.innerText = suggestionText;
             div.classList.add('suggestion-result');
             div.append(p);
             suggestionContainer.append(div);
+
+            div.onclick = () => {
+                searchInput.value = suggestionText;
+                prepareSearch();
+            };
         }
     } else {
         suggestionContainer.classList.add('hidden');
     }
-}
-
-for (let i = 0; i < suggestionResultNode.length; i++) {
-    suggestionResultNode[i].addEventListener('click', event => {
-        searchInput.value = event.target.innerHTML;
-        prepareSearch();
-    })
 }
 
 //HASHTAG CREATOR FUNCTIONS

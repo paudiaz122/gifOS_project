@@ -317,6 +317,10 @@ nav a {
     justify-content: space-between;
 }
 
+.mis-guifos .gif-grid {
+    justify-content: flex-start;
+}
+
 .gif-box {
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
@@ -343,6 +347,19 @@ nav a {
 
 .bar p {
     width: 100%;
+}
+
+.mis-guifos .gif-container {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.mis-guifos .gif-container:nth-child(4n - 3) {
+    margin-left: 0;
+}
+
+.mis-guifos .gif-container:nth-child(4n + 4) {
+    margin-right: 0;
 }
 
 .gif-container img {

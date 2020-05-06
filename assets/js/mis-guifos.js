@@ -203,6 +203,10 @@ function uploadGif() {
         jsonRes = await res.json(); //Convierto la respuesta a JSON
         saveGifInLocaStorage(); //Guardo ID del GIF en localStorage
         changeToUploadedStyle();
+
+        let myGifById = await getGifByID(jsonRes.data.id);
+        loadMyGif(myGifById.data.images.downsized.url);
+        
         return jsonRes;
     })
     .catch(error => console.error('Error:', error))

@@ -48,17 +48,21 @@ function changeCSS(theme, event) {
     const body = document.body;
     if (theme === 'sailorNight') {
         body.setAttribute('data-theme', SAILORNIGHT);
-        lupaImg.setAttribute('src', './assets/img/combined_shape.svg');
         sessionStorage.setItem('data-theme', SAILORNIGHT);
         sailorDayButton.classList.remove('selected');
         sailorNightButton.classList.add('selected');
+        if(lupaImg) {
+            lupaImg.setAttribute('src', './assets/img/combined_shape.svg');
+        }
     }
     else {
         body.setAttribute('data-theme', SAILORDAY);
-        lupaImg.setAttribute('src', './assets/img/lupa_inactive.svg');
         sessionStorage.setItem('data-theme', SAILORDAY);
         sailorDayButton.classList.add('selected');
         sailorNightButton.classList.remove('selected');
+        if(lupaImg) {
+            lupaImg.setAttribute('src', './assets/img/lupa_inactive.svg');
+        }
     }
 }
 
