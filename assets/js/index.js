@@ -45,9 +45,21 @@ function loadSearchPage(searchGifs) {
 }
 
 //SEARCH SUGGESTIONS
-function randomSuggestion() {
-    let randomNumber = Math.round(Math.random() * 9);
-    return randomSuggestionsArray[randomNumber];
+async function searchSuggestion(text) {
+    const suggestionResult = await fetch('https://api.giphy.com/v1/tags/related/' + text + '?api_key=' + APIKEY)
+        .then(response => {
+            return response.json();
+        })
+        .catch(error => {
+            console.log('Error: ', error);
+            return error;
+        });
+    
+    console.log(suggestionResult);
+    return suggestionResult;
+
+    // let randomNumber = Math.round(Math.random() * 9);
+    // return randomSuggestionsArray[randomNumber];
 }
 
 function onSearchInputChange() {
@@ -86,11 +98,13 @@ function toggleSuggestions() {
     suggestionContainer.innerHTML = ''
     if (showSuggestions) {
         suggestionContainer.classList.remove('hidden');
+
+        let searchInputText = searchInput.value;
+        let suggestionText = searchSuggestion(searchInputText);
         for(let i=0; i<3; i++) {
-            const suggestionText = randomSuggestion();
             const div = document.createElement('div');
             const p = document.createElement('p');
-            p.innerText = suggestionText;
+            p.innerText = suggestionText.data[i].name;
             div.classList.add('suggestion-result');
             div.append(p);
             suggestionContainer.append(div);
@@ -100,6 +114,22 @@ function toggleSuggestions() {
                 prepareSearch();
             };
         }
+
+        // for(let i=0; i<3; i++) {
+        //     let searchInputText = searchInput.value;
+        //     const suggestionText = searchSuggestion(searchInputText);
+        //     const div = document.createElement('div');
+        //     const p = document.createElement('p');
+        //     p.innerText = suggestionText;
+        //     div.classList.add('suggestion-result');
+        //     div.append(p);
+        //     suggestionContainer.append(div);
+
+        //     div.onclick = () => {
+        //         searchInput.value = suggestionText;
+        //         prepareSearch();
+        //     };
+        // }
     } else {
         suggestionContainer.classList.add('hidden');
     }
