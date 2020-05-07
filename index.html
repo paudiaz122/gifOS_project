@@ -26,7 +26,7 @@
                 <div class="guifos">
                     <a href="./mis-guifos.html" onclick="goToCreateGuifos(event, this);">Crear Guifos</a>
                 </div>
-                <button class="theme" onclick="toggleButton();"> <!-- TODO que se cierre cuando apretas afuera -->
+                <button class="theme" onclick="toggleButton();">
                     <span class="button-container">
                         <span class="button-text">Elegir Tema</span>
                         <span class="icon"><img src="./assets/img/dropdown.svg" alt="Dropdown arrow"></span>
@@ -49,7 +49,6 @@
                     <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" oninput="onSearchInputChange();" onkeydown="onSearchInputKeydown(event)">
                     <button id="search" type="button" class="search-button" onclick="prepareSearch()">
                         <img src="#" alt="Lupa Inactive">
-                        <!-- <p>Buscar</p> -->
                         Buscar
                     </button>
                 </div>   
@@ -65,11 +64,11 @@
                 <div class="gif-box">
                     <div class="bar">
                         <p></p>
-                        <button class="close-button"><img src="./assets/img/button_close.svg" alt="Close button"></button><!-- TODO darle funcion a la cruz -->
+                        <button class="close-button"><img src="./assets/img/button_close.svg" alt="Close button"></button>
                     </div>
                     <div class="gif-container">
                         <img src="#" alt="Suggested GIF">
-                        <button class="see-more">Ver más...</button><!-- TODO darle funcion a ver mas -->
+                        <button class="see-more">Ver más...</button>
                     </div>
                 </div>
                 <div class="gif-box">

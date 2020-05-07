@@ -86,6 +86,7 @@ body[data-theme='dark'] {
     background: #2E32FB;
     border: 1px solid rgba(51,53,143,0.20);
     box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF;
+    color: white;
 }
 
 [data-theme='dark'] #theme span.selected a {
@@ -101,6 +102,10 @@ body[data-theme='dark'] {
 [data-theme='dark'] .guifos,
 [data-theme='dark'] .guifos a,
 [data-theme='dark'] .button-text {
+    color: #FFFFFF;
+}
+
+[data-theme='dark'] a.my-guifos:visited {
     color: #FFFFFF;
 }
 
@@ -135,12 +140,3 @@ body[data-theme='dark'] {
 [data-theme='dark'] .recording .icon {
     box-shadow: inset -1px -1px 0 0 #993A3A, inset 1px 1px 0 0 #FFFFFF;
 }
-
-
-/* [data-theme='dark'] .upload-gif {
-    
-}
-
-[data-theme='dark'] .remake-gif {
-    
-} */

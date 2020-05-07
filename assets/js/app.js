@@ -20,7 +20,6 @@ function loadTheme() {
 
     body.setAttribute('data-theme', theme);
 
-    //TODO Esto se tiene que ejecutar SOLAMENTE si estoy en el index
     if(theme === 'light') {
         sailorDayButton.classList.add('selected');
         sailorNightButton.classList.remove('selected');

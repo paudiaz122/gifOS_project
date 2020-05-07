@@ -11,9 +11,17 @@ body[data-theme='light'] {
     background-image: url(../img/gifof_logo.png);
 }
 
+[data-theme='light'] a.my-guifos {
+    color: #110038;
+}
+
 [data-theme='light'] a.my-guifos:hover {
     outline: 1px dotted #110038;
     outline-offset: 4px;
+}
+
+[data-theme='light'] a.my-guifos:visited {
+    color: #110038;
 }
 
 [data-theme='light'] a.my-guifos:active {
