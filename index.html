@@ -27,15 +27,15 @@
                     <a href="./mis-guifos.html" onclick="goToCreateGuifos(event, this);">Crear Guifos</a>
                 </div>
                 <button class="theme" onclick="toggleButton();"> <!-- TODO que se cierre cuando apretas afuera -->
-                    <div class="button-container">
+                    <span class="button-container">
                         <span class="button-text">Elegir Tema</span>
                         <span class="icon"><img src="./assets/img/dropdown.svg" alt="Dropdown arrow"></span>
-                    </div>
+                    </span>
                     
-                    <ul id="theme">
-                        <li id="sailor-day" onclick="changeCSS('sailorDay', event);"><a href="#"><u>S</u>ailor Day</a></li>
-                        <li id="sailor-night" onclick="changeCSS('sailorNight', event);"><a href="#"><u>S</u>ailor Night</a></li>
-                    </ul>
+                    <span id="theme">
+                        <span id="sailor-day" onclick="changeCSS('sailorDay', event);"><u>S</u>ailor Day</span>
+                        <span id="sailor-night" onclick="changeCSS('sailorNight', event);"><u>S</u>ailor Night</span>
+                    </span>
                 </button>
                 <a class="my-guifos" href="./mis-guifos.html"><u>M</u>is Guifos</a>
             </div>
@@ -49,7 +49,8 @@
                     <input type="text" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" oninput="onSearchInputChange();" onkeydown="onSearchInputKeydown(event)">
                     <button id="search" type="button" class="search-button" onclick="prepareSearch()">
                         <img src="#" alt="Lupa Inactive">
-                        <p>Buscar</p>
+                        <!-- <p>Buscar</p> -->
+                        Buscar
                     </button>
                 </div>   
             </div>

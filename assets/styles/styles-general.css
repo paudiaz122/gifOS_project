@@ -16,6 +16,7 @@ body {
 
 a {
     outline: none;
+    text-decoration: none;
 }
 
 input {
@@ -135,7 +136,7 @@ button, .guifos {
     height: 38px;
 }
 
-nav ul {
+#theme {
     display: none;
     list-style: none;
     position: absolute;
@@ -150,28 +151,29 @@ nav ul {
     right: -1px;
 }
 
-nav ul.button-open {
+#theme.button-open {
     display: flex;
 }
 
-nav li {
+#theme span {
     width: 150px;
     height: 36px;
     padding: 7px 0 7px 16px;
     text-align: left;
+    color: #110038;
+    line-height: 22px;
 }
 
-nav li:hover {
+#theme span:hover {
     outline: 1px dotted #110038;
     outline-offset: -4px;
 }
 
-nav a {
+/* #theme p {
     margin-left: 0;
     color: #110038;
     line-height: 22px;
-    text-decoration: none;
-}
+} */
 
 .theme {
     width: 170px;
@@ -185,14 +187,11 @@ nav a {
     height: 100%;
 }
 
-.theme span {
-    height: 100%;
-    padding-top: 9px;
-    padding-bottom: 9px;
-}
-
 .theme span.button-text {
     border-right: 1px solid #110038;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-text {
@@ -201,6 +200,8 @@ nav a {
 
 .icon {
     width: 36px;
+    display: flex;
+    justify-content: center;
 }
 
 /************* Search Box *************/
@@ -543,6 +544,7 @@ button.recording {
 
 .recording span,
 .capturar span {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -556,6 +558,7 @@ button.recording {
 
 .recording .button-text,
 .capturar .button-text {
+    height: 100%;
     width: 144px;
     border-left: 1px solid #110038;
 }

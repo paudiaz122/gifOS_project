@@ -24,15 +24,15 @@
             <div class="nav-button">
                 <button id="create-gifos" class="guifos" onclick="createGuifos();">Crear Guifos</button>
                 <button class="theme" onclick="toggleButton();">
-                    <div class="button-container">
+                    <span class="button-container">
                         <span class="button-text">Elegir Tema</span>
                         <span class="icon"><img src="./assets/img/dropdown.svg" alt="Dropdown arrow"></span>
-                    </div>
+                    </span>
                     
-                    <ul id="theme">
-                        <li id="sailor-day" onclick="changeCSS('sailorDay', event);"><a href="#"><u>S</u>ailor Day</a></li>
-                        <li id="sailor-night" onclick="changeCSS('sailorNight', event);"><a href="#"><u>S</u>ailor Night</a></li>
-                    </ul>
+                    <span id="theme">
+                        <span id="sailor-day" onclick="changeCSS('sailorDay', event);"><u>S</u>ailor Day</span>
+                        <span id="sailor-night" onclick="changeCSS('sailorNight', event);"><u>S</u>ailor Night</span>
+                    </span>
                 </button>
                 <a class="my-guifos" href="./mis-guifos.html"><u>M</u>is Guifos</a>
             </div>
@@ -69,7 +69,7 @@
             </div>
             <div class="img-border">
                 <video src="#"></video>
-                <img class="hidden gif-preview" alt="Gif preview">
+                <img class="hidden gif-preview" alt="Gif preview" src="#">
                 <div class="uploading hidden">
                     <img src="./assets/img/globe_img.png" alt="Globe">
                     <h2>Estamos subiendo tu guifo...</h2>
@@ -81,20 +81,20 @@
                 <p>00:00:00</p>
             </div>
             <button class="capturar" onclick="startToRecordOnWindow();">
-                <div class="button-container">
+                <span class="button-container">
                     <span class="icon"><img src="./assets/img/camera.svg" alt="Camera"></span>
                     <span class="button-text">Capturar</span>
-                </div>
+                </span>
             </button>
             <button class="recording hidden" onclick="stopToRecordOnWindow();">
-                <div class="button-container">
+                <span class="button-container">
                     <span class="icon"><img src="./assets/img/recording.svg" alt="Camera"></span>
                     <span class="button-text">Listo</span>
-                </div>
+                </span>
             </button>
-            <button class="remake-gif hidden" onclick="reDoGif();">Repetir Captura</button> <!-- TODO darle funcionalidad -->
+            <button class="remake-gif hidden" onclick="reDoGif();">Repetir Captura</button>
             <button class="upload-gif hidden" onclick="uploadGif();">Subir Guifo</button>
-            <button class="cancelar hidden" onclick="abortUpload();">Cancelar</button> <!-- TODO darle funcionalidad -->
+            <button class="cancelar hidden" onclick="abortUpload();">Cancelar</button>
         </div>
 
         <div class="window-container uploaded hidden">

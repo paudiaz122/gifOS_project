@@ -177,11 +177,6 @@ async function getTrendGifs() {
     return consultTrend;
 }
 
-//Por cada tirada de LIMITGIFS que me trae la API, cargo uno por uno con loadGif()
-// function loadTrendGifs(gifs) {
-//     gifs.data.forEach(gif => loadGif(gif));
-// }
-
 function loadTrendGifs(gifs) {
     const RATIO = 1.7;
     let sum = 0, i=0;

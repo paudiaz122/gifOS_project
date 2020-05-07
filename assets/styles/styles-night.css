@@ -20,15 +20,6 @@ body[data-theme='dark'] {
     color: #8f8a9b;
 }
 
-/* [data-theme='dark'] a.my-guifos u {
-    display: none;
-} */
-
-/* [data-theme='dark'] a.my-guifos u:hover,
-[data-theme='dark'] a.my-guifos u:active {
-    display: block;
-} */
-
 [data-theme='dark'] .bar {
     background-image: linear-gradient(270deg, #EE3EFE 0%, #2E32FB 100%);
 }
@@ -80,24 +71,24 @@ body[data-theme='dark'] {
     box-shadow: inset -1px -1px 0 0 #A72CB3, inset 1px 1px 0 0 #FFFFFF;
 }
 
-[data-theme='dark'] nav ul {
+[data-theme='dark'] #theme {
     background-color: #B4B4B4;
     box-shadow: inset -2px -2px 0 0 #8F8F8F, inset 2px 2px 0 0 #FFFFFF;
 }
 
-[data-theme='dark'] nav li {
+[data-theme='dark'] #theme span {
     background: #CCCCCC;
     border: 1px solid #808080;
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
 }
 
-[data-theme='dark'] nav li.selected {
+[data-theme='dark'] #theme span.selected {
     background: #2E32FB;
     border: 1px solid rgba(51,53,143,0.20);
     box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF;
 }
 
-[data-theme='dark'] nav li.selected a {
+[data-theme='dark'] #theme span.selected a {
     color: #FFFFFF;
 }
 
