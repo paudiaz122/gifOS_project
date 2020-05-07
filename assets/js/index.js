@@ -42,7 +42,39 @@ async function getSearchResults(search) {
 function loadSearchPage(searchGifs) {
     trendsInput.placeholder = searchInputValue + ' (resultados)';
     trendDivNode.innerHTML = '';
-    searchGifs.data.forEach(gif => loadGif(gif));
+
+    const RATIO = 1.7;
+    let sum = 0, i=0;
+    let rectangule;
+    let gifRatio;
+    let gif;
+
+    do {
+        // console.log(searchGifs);
+        gif = searchGifs.data[i];
+        // console.log(gif);
+        gifRatio = gif.images.downsized.width / gif.images.downsized.height;
+
+        if(gifRatio > RATIO){
+            rectangule = 2;
+        } else {
+            rectangule = 1;
+        }
+        if(sum + rectangule <= 4) {
+            loadGif(gif, rectangule);
+            sum += rectangule;
+            searchGifs.data.splice(i, 1);
+
+            if(sum === 4) {
+                sum = 0;
+                i = 0;
+            }
+        } else {
+            i++;
+        }
+    } while (searchGifs.data.length > 0)
+
+    // searchGifs.data.forEach(gif => loadGif(gif));
 }
 
 //SEARCH SUGGESTIONS
@@ -185,9 +217,9 @@ function loadTrendGifs(gifs) {
     let gif;
 
     do {
-        console.log(gifs);
+        // console.log(gifs);
         gif = gifs.data[i];
-        console.log(gif);
+        // console.log(gif);
         gifRatio = gif.images.downsized.width / gif.images.downsized.height;
 
         if(gifRatio > RATIO){

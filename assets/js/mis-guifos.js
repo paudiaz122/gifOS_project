@@ -47,7 +47,7 @@ async function loadMyGuifosPage() {
     for(let i = 0; i <= localStorage.length - 1; i++) {
         let id = localStorage.getItem(localStorage.key(i));
         let myGifById = await getGifByID(id);
-        loadMyGif(myGifById.data.images.downsized.url);
+        loadMyGif(myGifById.data.images.downsized_medium.url);
     }
 }
 
