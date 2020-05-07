@@ -609,10 +609,33 @@ button.recording {
 .progress-bar {
     margin-top: 39px;
     margin-bottom: 8px;
-    background-color: pink;
     width: 324px;
     height: 24px;
+    background: #B4B4B4;
+    display: flex;
+    box-sizing: border-box;
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
 }
+
+.progress-bar.progress-bar-hidden {
+    display: none !important;
+  }
+  
+  .progress-bar .progress-item {
+    background-color: #999999;
+    margin: 0 2px 0 0;
+    display: flex;
+    flex-grow: 1;
+  }
+  
+  .progress-bar .progress-item.active {
+    background-color: #F7C9F3;
+  }
+  
+  .progress-bar .progress-item:last-child {
+    margin: 0;
+  }
 
 .uploading p {
     font-size: 12px;

@@ -55,11 +55,7 @@ async function searchSuggestion(text) {
             return error;
         });
     
-    console.log(suggestionResult);
     return suggestionResult;
-
-    // let randomNumber = Math.round(Math.random() * 9);
-    // return randomSuggestionsArray[randomNumber];
 }
 
 function onSearchInputChange() {
@@ -94,42 +90,26 @@ function toggleSearchButtonStatus() {
     }
 }
 
-function toggleSuggestions() {
+async function toggleSuggestions() {
     suggestionContainer.innerHTML = ''
     if (showSuggestions) {
         suggestionContainer.classList.remove('hidden');
 
         let searchInputText = searchInput.value;
-        let suggestionText = searchSuggestion(searchInputText);
+        const suggestionsArray = await searchSuggestion(searchInputText);
         for(let i=0; i<3; i++) {
             const div = document.createElement('div');
             const p = document.createElement('p');
-            p.innerText = suggestionText.data[i].name;
+            p.innerText = suggestionsArray.data[i].name;
             div.classList.add('suggestion-result');
             div.append(p);
             suggestionContainer.append(div);
 
             div.onclick = () => {
-                searchInput.value = suggestionText;
+                searchInput.value = suggestionsArray;
                 prepareSearch();
             };
         }
-
-        // for(let i=0; i<3; i++) {
-        //     let searchInputText = searchInput.value;
-        //     const suggestionText = searchSuggestion(searchInputText);
-        //     const div = document.createElement('div');
-        //     const p = document.createElement('p');
-        //     p.innerText = suggestionText;
-        //     div.classList.add('suggestion-result');
-        //     div.append(p);
-        //     suggestionContainer.append(div);
-
-        //     div.onclick = () => {
-        //         searchInput.value = suggestionText;
-        //         prepareSearch();
-        //     };
-        // }
     } else {
         suggestionContainer.classList.add('hidden');
     }

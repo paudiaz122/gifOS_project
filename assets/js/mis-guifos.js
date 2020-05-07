@@ -31,7 +31,8 @@ let index = 0;
 const constraints = {
     audio: false,
     video: {
-        height: { max: 480 }
+        height: { ideal: 720 },
+        width: { ideal: 1280 }
     }
 }
 
@@ -46,7 +47,6 @@ async function loadMyGuifosPage() {
     for(let i = 0; i <= localStorage.length - 1; i++) {
         let id = localStorage.getItem(localStorage.key(i));
         let myGifById = await getGifByID(id);
-        //console.log(myGifById);
         loadMyGif(myGifById.data.images.downsized.url);
     }
 }
@@ -284,5 +284,74 @@ function GifDone() {
     window.location.reload();
 }
 
+//PROGRESS BAR
+
+
+
+const ProgressBar = function(childItemsAmmount = 23, progressInterval = 150) {
+    const progressBarElement = document.getElementById('progress-bar');
+    let hidden = true;
+    let childItems = [];
+    let interval;
+    let firstActive = lastActive = 0;
+
+    function init() {}
+
+    function show() {
+        if (!hidden) return;
+
+        hidden = false;
+        progressBarElement.classList.remove('progress-bar-hidden');
+
+        renderContent();
+        animateContent();
+    }
+
+    function hide() {
+        if (hidden) return;
+
+        hidden = true;
+
+        progressBarElement.innerHTML = null;
+        progressBarElement.classList.add('progress-bar-hidden');
+        
+        clearInterval(interval);
+        childItems = [];
+        firstActive = lastActive = 0;
+    }
+
+    function renderContent() {
+
+        for(let i = 0; i <= childItemsAmmount; i++) {
+            const item = document.createElement('span');
+            item.classList.add('progress-item');
+            childItems.push(item);
+        }
+
+        childItems.forEach(item => progressBarElement.append(item));
+    }
+    
+    function animateContent() {
+        interval = setInterval(() => {
+            if (lastActive < childItems.length) {
+                childItems[lastActive].classList.add('active');
+                lastActive++;
+            } else if (firstActive < childItems.length) {
+                childItems[firstActive].classList.remove('active');
+                firstActive++;
+            } else {
+                lastActive = firstActive = 0;
+            }
+        }, progressInterval);
+    }
+      
+
+    return { show, hide };
+};
+
+// Cantidad de items, velocidad de progreso (milisegundos)
+const progressBar = new ProgressBar(22, 100);
+
 checkOrigin();
 loadMyGuifosPage();
+progressBar.show();
