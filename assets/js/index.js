@@ -9,6 +9,8 @@ const suggestionResultNode = document.getElementsByClassName('suggestion-result'
 let searchInputValue = '';
 let showSuggestions = false;
 
+let searchSuggestionAbortController;
+
 //CREATE GUIFOS
 function goToCreateGuifos(event, element) {
     event.preventDefault();
@@ -45,13 +47,22 @@ function loadSearchPage(searchGifs) {
 
 //SEARCH SUGGESTIONS
 async function searchSuggestion(text) {
-    const suggestionResult = await fetch('https://api.giphy.com/v1/tags/related/' + text + '?api_key=' + APIKEY)
+    if (searchSuggestionAbortController) {
+        searchSuggestionAbortController.abort();
+    }
+
+    searchSuggestionAbortController = new AbortController();
+
+    const suggestionResult = await fetch('https://api.giphy.com/v1/tags/related/' + text + '?api_key=' + APIKEY, {
+        signal: searchSuggestionAbortController.signal
+    })
         .then(response => {
+            searchSuggestionAbortController = null;
             return response.json();
         })
         .catch(error => {
             console.log('Error: ', error);
-            return error;
+            return;
         });
     
     return suggestionResult;
@@ -96,18 +107,23 @@ async function toggleSuggestions() {
 
         let searchInputText = searchInput.value;
         const suggestionsArray = await searchSuggestion(searchInputText);
-        for(let i=0; i<3; i++) {
-            const div = document.createElement('div');
-            const p = document.createElement('p');
-            p.innerText = suggestionsArray.data[i].name;
-            div.classList.add('suggestion-result');
-            div.append(p);
-            suggestionContainer.append(div);
-
-            div.onclick = () => {
-                searchInput.value = suggestionsArray;
-                prepareSearch();
-            };
+        
+        if (suggestionsArray) {
+            for(let i=0; i<3; i++) {
+                const suggestionText = suggestionsArray.data[i].name;
+                const div = document.createElement('div');
+                const p = document.createElement('p');
+    
+                p.innerText = suggestionText;
+                div.classList.add('suggestion-result');
+                div.append(p);
+                suggestionContainer.append(div);
+    
+                div.onclick = () => {
+                    searchInput.value = suggestionText;
+                    prepareSearch();
+                };
+            }
         }
     } else {
         suggestionContainer.classList.add('hidden');

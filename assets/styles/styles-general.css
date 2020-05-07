@@ -269,6 +269,10 @@ nav a {
     z-index: 1;
 }
 
+.search-suggestions.box:empty {
+    display: none;
+}
+
 .suggestion-result {
     width: 1057px;
     height: 36px;
@@ -317,8 +321,10 @@ nav a {
     justify-content: space-between;
 }
 
-.mis-guifos .gif-grid {
+.mis-guifos .gif-grid,
+.trends .gif-grid {
     justify-content: flex-start;
+    margin: 0 -8px;
 }
 
 .gif-box {
@@ -349,17 +355,9 @@ nav a {
     width: 100%;
 }
 
-.mis-guifos .gif-container {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-.mis-guifos .gif-container:nth-child(4n - 3) {
-    margin-left: 0;
-}
-
-.mis-guifos .gif-container:nth-child(4n + 4) {
-    margin-right: 0;
+.mis-guifos .gif-container,
+.trends .gif-container {
+    margin: 0 8px 16px 8px;
 }
 
 .gif-container img {
