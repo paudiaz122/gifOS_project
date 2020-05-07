@@ -6,7 +6,6 @@ const searchInput = document.querySelector('.search-box input');
 const suggestionsSection = document.querySelector('section.suggestions');
 const suggestionResultNode = document.getElementsByClassName('suggestion-result');
 
-let randomSuggestionsArray = ['Love', 'Cats', 'Animals', 'Dogs', 'Sports', 'Famous', 'Funny', 'Reaction', 'Mood', 'Saturday'];
 let searchInputValue = '';
 let showSuggestions = false;
 
@@ -20,7 +19,7 @@ function goToCreateGuifos(event, element) {
 /*USING GIPHY API*/
 //SEARCH
 function prepareSearch() {
-    sessionStorage.setItem('search', searchInputValue); //TODO completar botones azules
+    sessionStorage.setItem('search', searchInputValue);
     suggestionContainer.classList.add('hidden');
     suggestionsSection.classList.add('hidden');
     searchInputValue = searchInput.value.trim();
@@ -163,12 +162,45 @@ async function getTrendGifs() {
 }
 
 //Por cada tirada de LIMITGIFS que me trae la API, cargo uno por uno con loadGif()
+// function loadTrendGifs(gifs) {
+//     gifs.data.forEach(gif => loadGif(gif));
+// }
+
 function loadTrendGifs(gifs) {
-    gifs.data.forEach(gif => loadGif(gif));
+    const RATIO = 1.7;
+    let sum = 0, i=0;
+    let rectangule;
+    let gifRatio;
+    let gif;
+
+    do {
+        console.log(gifs);
+        gif = gifs.data[i];
+        console.log(gif);
+        gifRatio = gif.images.downsized.width / gif.images.downsized.height;
+
+        if(gifRatio > RATIO){
+            rectangule = 2;
+        } else {
+            rectangule = 1;
+        }
+        if(sum + rectangule <= 4) {
+            loadGif(gif, rectangule);
+            sum += rectangule;
+            gifs.data.splice(i, 1);
+
+            if(sum === 4) {
+                sum = 0;
+                i = 0;
+            }
+        } else {
+            i++;
+        }
+    } while (gifs.data.length > 0)
 }
 
 //Cargo gif por gif del arreglo de LIMITGIFS
-function loadGif(gif) {
+function loadGif(gif, rectangule) {
     const gifURL = gif.images.downsized.url;
     const gifHashtag = gif.title;
 
@@ -178,6 +210,9 @@ function loadGif(gif) {
     const p = document.createElement('p');
 
     div.classList.add('gif-container');
+    if(rectangule === 2) {
+        div.classList.add('rectangule');
+    }
     divBar.classList.add('bar');
     img.setAttribute('src', gifURL);
     p.innerHTML = hashtagCreatorForTrends(gifHashtag);

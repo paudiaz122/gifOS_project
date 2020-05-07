@@ -429,6 +429,11 @@ nav a {
     display: block;
 }
 
+.trends .gif-container.rectangule {
+    width: 592px;
+    height: 298px;
+}
+
 /************* Create Guifos *************/
 .hidden {
     display: none !important;
@@ -459,11 +464,8 @@ nav a {
     width: 518px;
     margin-left: 73px;
     padding-left: 16px;
-    /*TODO espaciar los parrafos*/
 }
 
-/* .text-container h2,
-.uploading h2 */
 h2 {
     font-size: 16px;
     color: #110038;

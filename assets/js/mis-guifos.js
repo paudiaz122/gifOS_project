@@ -285,9 +285,6 @@ function GifDone() {
 }
 
 //PROGRESS BAR
-
-
-
 const ProgressBar = function(childItemsAmmount = 23, progressInterval = 150) {
     const progressBarElement = document.getElementById('progress-bar');
     let hidden = true;
