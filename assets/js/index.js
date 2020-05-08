@@ -21,11 +21,14 @@ function goToCreateGuifos(event, element) {
 /*USING GIPHY API*/
 //SEARCH
 function prepareSearch() {
-    sessionStorage.setItem('search', searchInputValue);
-    suggestionContainer.classList.add('hidden');
-    suggestionsSection.classList.add('hidden');
+    // sessionStorage.setItem('search', searchInputValue);
     searchInputValue = searchInput.value.trim();
-    getSearchResults(searchInputValue).then(response => loadSearchPage(response));
+
+    if (searchInputValue) {
+        suggestionContainer.classList.add('hidden');
+        suggestionsSection.classList.add('hidden');
+        getSearchResults(searchInputValue).then(response => loadSearchPage(response));
+    }
 }
 
 async function getSearchResults(search) {
@@ -73,8 +76,6 @@ function loadSearchPage(searchGifs) {
             i++;
         }
     } while (searchGifs.data.length > 0)
-
-    // searchGifs.data.forEach(gif => loadGif(gif));
 }
 
 //SEARCH SUGGESTIONS

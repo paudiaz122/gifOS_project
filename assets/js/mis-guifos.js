@@ -269,11 +269,13 @@ async function downloadMyGif() {
     downloaded = 1;
 
     if(copied === 1) {
-        await recorder.save(myGifURL);
+        // await recorder.save(myGifURL);
+        await recorder.save('${jsonRes.data.id}.gif');
     } else {
         let myGifById = await getGifByID(jsonRes.data.id);
         myGifURL = myGifById.data.images.downsized.url;
-        await recorder.save(myGifURL);
+        // await recorder.save(myGifURL);
+        await recorder.save('${jsonRes.data.id}.gif');
     }
 }
 
