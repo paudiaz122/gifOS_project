@@ -6,6 +6,7 @@ const searchInput = document.querySelector('.search-box input');
 const suggestionsSection = document.querySelector('section.suggestions');
 const suggestionResultNode = document.getElementsByClassName('suggestion-result');
 
+let pTextToSearch;
 let searchInputValue = '';
 let showSuggestions = false;
 
@@ -31,6 +32,17 @@ function prepareSearch() {
     }
 }
 
+function seeMore(event) {
+    const pGifBarTitle = event.path[2].childNodes[1].childNodes[1];
+    const pGifBarTitleText = pGifBarTitle.innerHTML;
+
+    pTextToSearch = pGifBarTitleText.trim().replace(/#+/g, '').replace(/\s+/g, '+');
+
+    suggestionContainer.classList.add('hidden');
+    suggestionsSection.classList.add('hidden');
+    getSearchResults(pTextToSearch).then(response => loadSearchPage(response));
+}
+
 async function getSearchResults(search) {
     const found = await fetch('https://api.giphy.com/v1/gifs/search?api_key=' + APIKEY + '&q=' + search + '&limit=' + LIMITGIFS + '&offset=0&rating=G&lang=en')
         .then(response => {
@@ -43,7 +55,12 @@ async function getSearchResults(search) {
 }
 
 function loadSearchPage(searchGifs) {
-    trendsInput.placeholder = searchInputValue + ' (resultados)';
+    if(searchInputValue) {
+        trendsInput.placeholder = searchInputValue + ' (resultados)';
+    } else {
+        trendsInput.placeholder = pTextToSearch + ' (resultados)';
+    }
+    
     trendDivNode.innerHTML = '';
 
     const RATIO = 1.7;
@@ -163,18 +180,6 @@ async function toggleSuggestions() {
     }
 }
 
-//HASHTAG CREATOR FUNCTIONS
-function hashtagCreator(stringToConvert) {
-    let finalString = '';
-    let index = stringToConvert.indexOf(' ');
-    while(index != -1) {
-        finalString = finalString + stringToConvert.slice(0, index);
-        stringToConvert = stringToConvert.slice(index + 1);
-        index = stringToConvert.indexOf(' ');
-    }
-    return '#' + finalString + stringToConvert;
-}
-
 //GIF SUGGESTIONS (Random GIFs)
 async function getRandomGif() {
     const consultRandom = await fetch('https://api.giphy.com/v1/gifs/random?api_key=' + APIKEY + '&tag=&rating=G')
@@ -185,6 +190,16 @@ async function getRandomGif() {
             return error;
         })
     return consultRandom;
+}
+
+async function reloadRandomGif(event) {
+    console.log(event);
+    const ImgForNewGif = event.path[3].childNodes[3].childNodes[1];
+    const pBarForNewGif = event.path[2].childNodes[1];
+
+    const gif = await getRandomGif();
+    ImgForNewGif.setAttribute('src', gif.data.images.downsized.url);
+    pBarForNewGif.innerHTML = hashtagCreator(gif.data.title);
 }
 
 async function loadRandomGif() {
@@ -259,7 +274,7 @@ function loadGif(gif, rectangule) {
     }
     divBar.classList.add('bar');
     img.setAttribute('src', gifURL);
-    p.innerHTML = hashtagCreatorForTrends(gifHashtag);
+    p.innerHTML = hashtagCreator(gifHashtag);
 
     div.append(img);
     divBar.append(p);

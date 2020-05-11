@@ -47,7 +47,7 @@ async function loadMyGuifosPage() {
     for(let i = 0; i <= localStorage.length - 1; i++) {
         let id = localStorage.getItem(localStorage.key(i));
         let myGifById = await getGifByID(id);
-        loadMyGif(myGifById.data.images.downsized_medium.url);
+        loadMyGif(myGifById.data.images.downsized.url);
     }
 }
 
@@ -59,6 +59,7 @@ async function getGifByID(id) {
         .catch(error => {
             return error;
         })
+    console.log(consultById);
     return consultById;
 }
 
@@ -73,7 +74,7 @@ function loadMyGif(gifURL) {
     div.classList.add('gif-container');
     divBar.classList.add('bar');
     img.setAttribute('src', gifURL);
-    p.innerHTML = hashtagCreatorForTrends(gifHashtag);
+    p.innerHTML = hashtagCreator(gifHashtag);
 
     div.append(img);
     divBar.append(p);
@@ -201,6 +202,7 @@ function uploadGif() {
         signal: signal
     }).then(async res => {
         jsonRes = await res.json(); //Convierto la respuesta a JSON
+        console.log(jsonRes);
         saveGifInLocaStorage(); //Guardo ID del GIF en localStorage
         changeToUploadedStyle();
 

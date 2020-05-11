@@ -65,18 +65,23 @@ function changeCSS(theme, event) {
     }
 }
 
-//HASHTAG CREATOR FOR TREND AND MY GIFS
-function hashtagCreatorForTrends(stringToConvert) {
+//HASHTAG CREATOR
+function hashtagCreator(stringToConvert) {
     let finalString = '';
     let index = stringToConvert.indexOf(' ');
     
-    while(index != -1) {
+    if(stringToConvert) {
+        while(index != -1) {
 
-        finalString = finalString + stringToConvert.slice(0, index) + ' #';
-        stringToConvert = stringToConvert.slice(index + 1);
-        index = stringToConvert.indexOf(' ');
+            finalString = finalString + stringToConvert.slice(0, index) + ' #';
+            stringToConvert = stringToConvert.slice(index + 1);
+            index = stringToConvert.indexOf(' ');
+        }
+        return '#' + finalString + stringToConvert;
+    } else {
+        return '#Suggestion #Gif';
     }
-    return '#' + finalString + stringToConvert;
+    
 }
 
 loadTheme();
